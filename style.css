@@ -1,14 +1,22 @@
+/* Reset e fontes */
 * {
     font-family: "Oswald", sans-serif;
-    padding: 0%;
-    margin: 0%;
+    padding: 0;
+    margin: 0;
     box-sizing: border-box;
     outline: none;
-
 }
 
 body {
     background-color: #288428;
+}
+
+/* Imagens */
+.img {
+    width: 400px;
+    display: block;
+    margin: 0 auto;
+    border-radius: 8px;
 }
 
 .img1, .img1hidden {
@@ -16,31 +24,31 @@ body {
     background-color: #59a959;
 }
 
-.img {
-    width: 400px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    border-radius: 8px;
+.img1 {
+    margin: 15px 0;
 }
 
+/* Container principal */
 main {
     width: 375px;
     border-radius: 20px;
     background: #59a959;
     margin: 0 auto 40px;
     padding: 44px 24px 23px;
-
 }
 
+/* Labels */
 label {
     color: #181515;
     font-weight: 400;
     font-size: 14px;
-
+    display: block;
+    margin-bottom: 12px;
 }
 
-select,
+/* Selects e inputs */
+select.select,
+select.select-from,
 input {
     background: #f3f9f3;
     border: 1px solid #bbbbbb;
@@ -56,6 +64,7 @@ input {
     cursor: pointer;
 }
 
+/* Botão */
 button {
     border-radius: 5px;
     width: 100%;
@@ -66,31 +75,28 @@ button {
     font-size: 18px;
     font-weight: 700;
     cursor: pointer;
+    transition: opacity 0.2s;
 }
 
 button:hover {
-    opacity: 0.8px;
+    opacity: 0.8;
 }
 
 button:active {
-    opacity: 0.6px;
+    opacity: 0.6;
 }
 
+/* Seção de resultados */
 section {
-    border-radius: 1px solid;
     border-radius: 20px;
     margin-top: 36px;
     padding: 12px;
     display: flex;
     flex-direction: column;
     align-items: center;
-
 }
 
-.img1 {
-    margin: 15px 0;
-}
-
+/* Caixa de cada moeda */
 .currency-box {
     display: flex;
     flex-direction: column;
@@ -98,23 +104,23 @@ section {
     gap: 4px;
 }
 
-.currency-value,
-.currency-value2 {
-    color: #181515;
-    font-size: 14px;
-}
-
+/* Nomes e valores */
 .currency, .currencyEuro {
     color: #181515;
     font-weight: 700;
     font-size: 20px;
 }
 
+.currencyvalue,
+.currencyvalue2 {
+    color: #181515;
+    font-size: 14px;
+}
+
+/* Bordas do container de moeda */
 div {
     border: 2px solid white;
-    width: 200px;
-    /* controla a largura da borda */
-    margin: 0 auto;
-    /* centraliza */
+    width: 200px; /* controla a largura da borda */
+    margin: 0 auto; /* centraliza */
     padding: 10px 0;
 }
