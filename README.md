@@ -30,3 +30,4 @@ O objetivo é **aprimorar habilidades de front-end** e criar um projeto funciona
 ---
 
 ## 📂 Estrutura do projeto
+![Demonstração do Projeto](Assets/VideoProject.gif)
