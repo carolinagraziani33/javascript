@@ -30,4 +30,10 @@ O objetivo é **aprimorar habilidades de front-end** e criar um projeto funciona
 ---
 
 ## 📂 Estrutura do projeto
+## 🌐 Deploy Online
+
+Veja o projeto funcionando no navegador:
+
+[Visualizar projeto online](https://carolinagraziani33.github.io/javascript/)
+
 ![Demonstração do Projeto](Assets/VideoProject.gif)
