@@ -2,19 +2,33 @@
 <html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conversor</title>
-    <link rel="stylesheet" href="style.css">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
-        rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Conversor</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+rel="stylesheet">
+
 </head>
 
 <body>
-    <img class="img" src="./Assets/money.webp" alt="imagem principal">
 
+<img class="img" src="./Assets/money.webp" alt="imagem principal">
+
+<div class="main-container">
+
+    <!-- HISTORICO -->
+    <div class="history-box">
+        <h3>Últimas conversões</h3>
+        <ul id="history-list"></ul>
+    </div>
+
+
+    <!-- CONVERSOR (CENTRO) -->
     <main>
+
         <!-- Select de origem -->
         <label>
             Converter <b>de</b>
@@ -27,7 +41,7 @@
             <select class="select"></select>
         </label>
 
-        <!-- Valor de entrada -->
+        <!-- Valor -->
         <label>
             Valor
             <input class="input-currency" placeholder="R$ 10.000,00">
@@ -35,28 +49,39 @@
 
         <button class="button">Converter</button>
 
-        <!-- Resultado -->
+        <!-- RESULTADO -->
         <section>
-            <!-- Moeda de origem -->
+
             <div class="currency-box">
-                <img class="img1" id="currency-from-img" src="./Assets/real.jpg" alt="moeda de origem">
+                <img class="img1" id="currency-from-img" src="./Assets/real.jpg">
                 <p class="currency" id="currency-from-name">Real</p>
                 <p class="currencyvalue">R$0,00</p>
             </div>
 
-            <!-- Seta -->
-            <img class="img1" src="./Assets/seta.webp" alt="seta">
+            <img class="img1" src="./Assets/seta.webp">
 
-            <!-- Moeda de destino -->
             <div class="currency-box">
-                <img id="currency-img" class="img1" src="./Assets/dolar.avif" alt="moeda de destino">
+                <img id="currency-img" class="img1" src="./Assets/dolar.avif">
                 <p class="currency" id="currency-name">Dolar</p>
                 <p class="currencyvalue2">U$0,00</p>
             </div>
+
+            <p id="loading" class="loading">Carregando cotação...</p>
+
         </section>
+
     </main>
 
-    <script src="./java.js"></script>
-</body>
 
+    <!-- CURIOSIDADE -->
+    <div class="fact-box">
+        <h3>Curiosidade</h3>
+        <p id="currency-fact"></p>
+    </div>
+
+</div>
+
+<script src="./java.js"></script>
+
+</body>
 </html>
