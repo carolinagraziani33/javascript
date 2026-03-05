@@ -71,45 +71,92 @@ function updateCurrencyInfo(fromCurrency, toCurrency){
 
 // Converte valores
 async function convertValues(){
+
     const from = selectFrom.value
     const to = selectTo.value
     let inputValue = Number(inputCurrency.value)
-    if(!inputValue) return
+
+    if(!inputValue){
+        alert("Digite um valor válido")
+        return
+    }
 
     let brlValue = inputValue
 
-    // Se moeda de origem não for BRL, converte para BRL
+    // Converter moeda origem para BRL
     if(from !== "BRL"){
         try{
             const responseFrom = await fetch(`https://economia.awesomeapi.com.br/json/last/${from}-BRL`)
             const dataFrom = await responseFrom.json()
+
             const rateFrom = Number(dataFrom[`${from}BRL`]?.bid)
-            if(!rateFrom) { alert(`Cotação de ${from} não disponível`); return }
+
+            if(!rateFrom){
+                alert(`Cotação de ${from} não disponível`)
+                return
+            }
+
             brlValue = inputValue * rateFrom
-        }catch(err){ console.log(err); return }
+
+        }catch(err){
+            console.log(err)
+            return
+        }
     }
 
-    // Atualiza valor da moeda de origem
-    currencyValueFrom.innerHTML = new Intl.NumberFormat("pt-BR",{style:"currency",currency:"BRL"}).format(brlValue)
+    // Mostrar valor da moeda de origem corretamente
+    currencyValueFrom.innerHTML =
+        new Intl.NumberFormat("pt-BR", {
+            style:"currency",
+            currency: from
+        }).format(inputValue)
 
-    // Converte para moeda de destino
+    // Converter para moeda destino
     try{
-        let convertedValue
-        if(["BTC","ETH","DOGE"].includes(to)){
-            const responseTo = await fetch(`https://economia.awesomeapi.com.br/json/last/${to}-BRL`)
-            const dataTo = await responseTo.json()
-            const rateTo = Number(dataTo[`${to}BRL`]?.bid)
-            convertedValue = (brlValue / rateTo).toFixed(6) + " " + to
-        }else{
-            const responseTo = await fetch(`https://economia.awesomeapi.com.br/json/last/${to}-BRL`)
-            const dataTo = await responseTo.json()
-            const rateTo = Number(dataTo[`${to}BRL`]?.bid)
-            convertedValue = new Intl.NumberFormat("en-US",{style:"currency",currency:to}).format(brlValue / rateTo)
-        }
-        currencyValueTo.innerHTML = convertedValue
-    }catch(err){ console.log(err); return }
 
-    // Atualiza imagens e nomes
+        let convertedValue
+
+        if(to === "BRL"){
+
+            convertedValue = new Intl.NumberFormat("pt-BR",{
+                style:"currency",
+                currency:"BRL"
+            }).format(brlValue)
+
+        }else{
+
+            const responseTo = await fetch(`https://economia.awesomeapi.com.br/json/last/${to}-BRL`)
+            const dataTo = await responseTo.json()
+
+            const rateTo = Number(dataTo[`${to}BRL`]?.bid)
+
+            if(!rateTo){
+                alert(`Cotação de ${to} não disponível`)
+                return
+            }
+
+            if(["BTC","ETH","DOGE"].includes(to)){
+
+                convertedValue = (brlValue / rateTo).toFixed(6) + " " + to
+
+            }else{
+
+                convertedValue = new Intl.NumberFormat("en-US",{
+                    style:"currency",
+                    currency:to
+                }).format(brlValue / rateTo)
+
+            }
+
+        }
+
+        currencyValueTo.innerHTML = convertedValue
+
+    }catch(err){
+        console.log(err)
+        return
+    }
+
     updateCurrencyInfo(from,to)
 }
 
