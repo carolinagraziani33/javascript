@@ -3,117 +3,112 @@
 
 <head>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Conversor</title>
+<title>Conversor de Moedas</title>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <link rel="icon" href="favicon.ico">
-    <link rel="stylesheet" href="style.css">
+<link rel="icon" href="favicon.ico">
+<link rel="stylesheet" href="style.css">
 
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Roboto:wght@100..900&display=swap"
-        rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Roboto:wght@100..900&display=swap"
+rel="stylesheet">
 
 </head>
 
 <body>
 
-    <img class="img" src="./Assets/money.webp">
+<img class="img" src="./Assets/money.webp">
 
-    <div class="main-container">
+<div class="main-container">
 
-        <!-- COLUNA ESQUERDA -->
-        <div class="left-column">
+<div class="left-column">
 
-            <div class="history-box">
-                <h3>Últimas conversões</h3>
-                <ul id="history-list"></ul>
-                 <button id="clear-history">Apagar histórico</button>
-            </div>
-            <div class="chart-box">
+<div class="history-box">
+<h3>Últimas conversões</h3>
+<ul id="history-list"></ul>
+<button id="clear-history">Apagar histórico</button>
+</div>
 
-                <h3>Gráfico</h3>
+<div class="chart-box">
+<h3>Gráfico</h3>
+<canvas id="currencyChart"></canvas>
+<p id="chart-message"></p>
+<button id="clear-chart">Limpar gráfico</button>
+</div>
 
-                <canvas id="currencyChart"></canvas>
-
-                <p id="chart-message"></p>
-
-            </div>
-           
-
-        </div>
+</div>
 
 
-        <!-- CONVERSOR -->
-        <main>
+<main>
 
-            <label>
-                Converter <b>de</b>
-                <select class="select-from"></select>
-                <button class="swap">🔄</button>
-            </label>
+<button id="theme-toggle">🌙 Tema</button>
 
-            <label>
-                Converter <b>para</b>
-                <select class="select"></select>
-            </label>
+<label>
+Converter <b>de</b>
+<select class="select-from"></select>
+<button class="swap">🔄</button>
+</label>
 
-            <label>
-                Valor
-                <input class="input-currency" placeholder="R$ 10.000,00">
-            </label>
+<label>
+Converter <b>para</b>
+<select class="select"></select>
+</label>
 
-            <button class="button">Converter</button>
+<label>
+Valor
+<input class="input-currency" placeholder="R$ 10.000,00">
+</label>
 
-            <p id="exchange-rate"></p>
+<button class="button">Converter</button>
 
-            <section>
+<button id="copy-result">Copiar resultado</button>
 
-                <div class="currency-box">
+<p id="exchange-rate"></p>
 
-                    <img class="img1" id="currency-from-img">
+<section>
 
-                    <p class="currency" id="currency-from-name">Real</p>
+<div class="currency-box">
 
-                    <p class="currencyvalue">R$0,00</p>
+<img class="img1" id="currency-from-img">
 
-                </div>
+<p class="currency" id="currency-from-name">Real</p>
 
-                <img class="img1" src="./Assets/seta.webp">
+<p class="currencyvalue">R$0,00</p>
 
-                <div class="currency-box">
+</div>
 
-                    <img class="img1" id="currency-img">
+<img class="img1" src="./Assets/seta.webp">
 
-                    <p class="currency" id="currency-name">Dólar</p>
+<div class="currency-box">
 
-                    <p class="currencyvalue2">U$0,00</p>
+<img class="img1" id="currency-img">
 
-                </div>
+<p class="currency" id="currency-name">Dólar</p>
 
-                <p id="loading" class="loading">Carregando cotação...</p>
+<p class="currencyvalue2">U$0,00</p>
 
-            </section>
+</div>
 
-        </main>
+<p id="loading" class="loading">Carregando cotação...</p>
 
+</section>
 
-        <!-- CURIOSIDADE -->
+</main>
 
-        <div class="fact-box">
+<div class="fact-box">
 
-            <h3>Curiosidade</h3>
+<h3>Curiosidade</h3>
 
-            <p id="currency-fact"></p>
+<p id="currency-fact"></p>
 
-        </div>
+</div>
 
-    </div>
+</div>
 
-    <script src="./java.js"></script>
+<script src="./java.js"></script>
 
 </body>
-
 </html>
