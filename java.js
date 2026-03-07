@@ -1,6 +1,9 @@
 const convertButton = document.querySelector(".button")
+const swapButton = document.querySelector(".swap")
+
 const selectFrom = document.querySelector(".select-from")
 const selectTo = document.querySelector(".select")
+
 const inputCurrency = document.querySelector(".input-currency")
 
 const currencyValueFrom = document.querySelector(".currencyvalue")
@@ -9,359 +12,552 @@ const currencyValueTo = document.querySelector(".currencyvalue2")
 const loading = document.getElementById("loading")
 const historyList = document.getElementById("history-list")
 
+const exchangeRate = document.getElementById("exchange-rate")
+
+const currencyFact = document.getElementById("currency-fact")
+
+const currencyImg = document.getElementById("currency-img")
+const currencyName = document.getElementById("currency-name")
+
+const currencyFromImg = document.getElementById("currency-from-img")
+const currencyFromName = document.getElementById("currency-from-name")
+
+let chart
+
 convertButton.disabled = true
+
 
 
 // NOMES DAS MOEDAS
 
 const currencyNames = {
 
-    "BRL": "Real Brasileiro",
-    "USD": "Dólar Americano",
-    "EUR": "Euro",
-    "GBP": "Libra Esterlina",
-    "JPY": "Iene Japonês",
-    "AUD": "Dólar Australiano",
-    "CAD": "Dólar Canadense",
-    "CHF": "Franco Suíço",
-    "CNY": "Yuan Chinês",
-    "ARS": "Peso Argentino",
-    "BTC": "Bitcoin",
-    "ETH": "Ethereum",
-    "DOGE": "Dogecoin"
+    BRL: "Real Brasileiro",
+    USD: "Dólar Americano",
+    EUR: "Euro",
+    GBP: "Libra Esterlina",
+    JPY: "Iene Japonês",
+    AUD: "Dólar Australiano",
+    CAD: "Dólar Canadense",
+    CHF: "Franco Suíço",
+    CNY: "Yuan Chinês",
+    ARS: "Peso Argentino",
+    BTC: "Bitcoin",
+    ETH: "Ethereum",
+    DOGE: "Dogecoin"
 
 }
+
 
 
 // CURIOSIDADES
 
 const currencyFacts = {
 
-BRL: [
-"O Brasil abriga cerca de 60% da Floresta Amazônica, a maior floresta tropical do mundo. Fonte: WWF.",
-"O Pantanal é a maior área úmida tropical do planeta e um dos ecossistemas mais ricos em biodiversidade. Fonte: WWF.",
-"O Brasil possui uma das maiores reservas de água doce do planeta. Fonte: FAO."
-],
+    USD: [
+        "O dólar é a moeda mais usada no mundo.",
+        "A Reserva Federal controla o dólar.",
+        "O símbolo $ surgiu no século XVIII.",
+        "Grande parte das reservas globais são em dólar.",
+        "O dólar domina o comércio internacional."
+    ],
 
-USD: [
-"Os Estados Unidos possuem o Parque Nacional de Yellowstone, o primeiro parque nacional do mundo criado em 1872. Fonte: UNEP.",
-"A NASA monitora mudanças climáticas globais usando satélites que observam florestas, oceanos e gelo polar.",
-"Os EUA possuem mais de 400 parques nacionais protegendo biodiversidade e paisagens naturais."
-],
+    EUR: [
+        "O euro foi criado em 1999.",
+        "Mais de 300 milhões usam euro.",
+        "O Banco Central Europeu controla a moeda.",
+        "É a segunda moeda mais negociada.",
+        "É usada em vários países da Europa."
+    ],
 
-EUR: [
-"A União Europeia possui políticas ambientais rigorosas para redução de emissão de carbono. Fonte: UNEP.",
-"A Europa tem metas para se tornar neutra em carbono até 2050.",
-"Muitos países europeus investem fortemente em energia renovável como vento e solar."
-],
+    GBP: [
+        "A libra esterlina é uma das moedas mais antigas ainda em uso.",
+        "O Banco da Inglaterra controla a libra.",
+        "O Reino Unido manteve a libra mesmo após a criação do euro."
+    ],
 
-GBP: [
-"O Reino Unido foi um dos primeiros países a aprovar leis modernas de proteção ambiental.",
-"Londres criou zonas de baixa emissão para reduzir poluição do ar.",
-"O Reino Unido investe fortemente em energia eólica offshore."
-],
+    JPY: [
+        "O iene japonês é uma das moedas mais negociadas do mundo.",
+        "O Japão possui uma das maiores economias globais.",
+        "O Banco do Japão controla a moeda."
+    ],
 
-JPY: [
-"O Japão possui uma das maiores taxas de reciclagem do mundo.",
-"O país investe muito em tecnologias para economia de energia.",
-"Mais de 60% do território japonês é coberto por florestas."
-],
+    AUD: [
+        "O dólar australiano é muito usado no mercado de commodities.",
+        "A Austrália foi um dos primeiros países a usar notas de plástico."
+    ],
 
-AUD: [
-"A Austrália abriga a Grande Barreira de Corais, o maior sistema de recifes do planeta.",
-"Esse recife é visível até do espaço. Fonte: NASA.",
-"A preservação dos recifes é essencial para milhões de espécies marinhas."
-],
+    CAD: [
+        "O dólar canadense é chamado de 'loonie'.",
+        "O Canadá usa notas feitas de polímero."
+    ],
 
-CAD: [
-"O Canadá possui cerca de 10% das florestas do planeta.",
-"Grande parte da energia do país vem de hidrelétricas.",
-"O país tem milhares de lagos e grandes reservas de água doce."
-],
+    CHF: [
+        "O franco suíço é considerado uma moeda muito estável.",
+        "A Suíça tem um dos sistemas bancários mais fortes do mundo."
+    ],
 
-CHF: [
-"A Suíça é referência mundial em reciclagem.",
-"O país protege grande parte dos Alpes e da biodiversidade local.",
-"Suíços possuem uma das menores pegadas de carbono da Europa."
-],
+    CNY: [
+        "O yuan é controlado pelo Banco Popular da China.",
+        "A China possui uma das maiores economias do planeta."
+    ],
 
-CNY: [
-"A China lidera investimentos globais em energia solar.",
-"O país possui grandes programas de reflorestamento.",
-"A China criou enormes fazendas solares no deserto para energia limpa."
-],
+    ARS: [
+        "O peso argentino passou por várias mudanças monetárias.",
+        "A Argentina já enfrentou períodos de alta inflação."
+    ],
 
-ARS: [
-"A Argentina abriga parte da Patagônia, região com biodiversidade única.",
-"O país possui grandes reservas naturais protegidas.",
-"A região patagônica é importante para conservação de espécies marinhas."
-],
+    BRL: [
+        "O real foi criado em 1994 durante o Plano Real.",
+        "O Banco Central do Brasil controla a moeda."
+    ],
 
-BTC: [
-"O Bitcoin consome muita energia para mineração, o que levanta debates ambientais.",
-"Algumas empresas estão usando energia renovável para mineração de criptomoedas.",
-"Hoje existem projetos de criptomoedas focados em menor impacto ambiental."
-],
+    BTC: [
+        "Bitcoin foi criado em 2009.",
+        "O criador usa o nome Satoshi Nakamoto.",
+        "Existe limite de bitcoins.",
+        "Usa tecnologia blockchain."
+    ],
 
-ETH: [
-"O Ethereum reduziu drasticamente o consumo de energia após atualização para Proof of Stake.",
-"A mudança reduziu mais de 99% do gasto energético da rede.",
-"Criptomoedas mais modernas buscam ser ambientalmente sustentáveis."
-],
+    ETH: [
+        "Ethereum foi criado em 2015.",
+        "Permite contratos inteligentes.",
+        "Vitalik Buterin criou Ethereum."
+    ],
 
-DOGE: [
-"A Dogecoin é uma criptomoeda inspirada em um meme da internet.",
-"Criptomoedas estão discutindo formas de reduzir impacto ambiental.",
-"Projetos de blockchain estão estudando formas de usar energia renovável."
-]
+    DOGE: [
+        "Dogecoin começou como uma piada na internet.",
+        "Usa o meme do cachorro Shiba Inu.",
+        "Hoje é uma criptomoeda popular."
+    ]
 
 }
 
 
-// POPULAR SELECTS
 
-function populateSelects(){
+// FUNÇÃO BANDEIRAS E CRIPTO
+
+function getCurrencyImage(code) {
+
+    const flags = {
+
+        BRL: "br",
+        USD: "us",
+        EUR: "de",
+        GBP: "gb",
+        JPY: "jp",
+        AUD: "au",
+        CAD: "ca",
+        CHF: "ch",
+        CNY: "cn",
+        ARS: "ar"
+
+    }
+
+    const crypto = {
+
+        BTC: "https://cryptologos.cc/logos/bitcoin-btc-logo.png",
+        ETH: "https://cryptologos.cc/logos/ethereum-eth-logo.png",
+        DOGE: "https://cryptologos.cc/logos/dogecoin-doge-logo.png"
+
+    }
+
+    if (flags[code]) return `https://flagcdn.com/48x36/${flags[code]}.png`
+
+    if (crypto[code]) return crypto[code]
+
+    return "https://flagcdn.com/48x36/un.png"
+
+}
+
+
+
+// POPULAR SELECT
+
+function populateSelects() {
 
     selectFrom.innerHTML = ""
     selectTo.innerHTML = ""
 
-    const options = []
+    for (let code in currencyNames) {
 
-    for(let code in currencyNames){
+        const option1 = document.createElement("option")
 
-        const option = document.createElement("option")
+        option1.value = code
+        option1.textContent = `${currencyNames[code]} (${code})`
 
-        option.value = code
-        option.textContent = `${currencyNames[code]} (${code})`
+        const option2 = option1.cloneNode(true)
 
-        options.push(option)
+        selectFrom.appendChild(option1)
+        selectTo.appendChild(option2)
 
     }
-
-    options.sort((a,b)=>a.textContent.localeCompare(b.textContent))
-
-    options.forEach(option=>{
-
-        selectFrom.appendChild(option.cloneNode(true))
-        selectTo.appendChild(option.cloneNode(true))
-
-    })
 
     convertButton.disabled = false
 
 }
 
-
-// ATUALIZA IMAGENS E NOMES
-
-function updateCurrencyInfo(fromCurrency,toCurrency){
-
-    const fromName = document.getElementById("currency-from-name")
-    const fromImg = document.getElementById("currency-from-img")
-
-    const toName = document.getElementById("currency-name")
-    const toImg = document.getElementById("currency-img")
-
-    const fromOption = selectFrom.querySelector(`option[value="${fromCurrency}"]`)
-    const toOption = selectTo.querySelector(`option[value="${toCurrency}"]`)
-
-    fromName.innerHTML = fromOption ? fromOption.textContent : fromCurrency
-    toName.innerHTML = toOption ? toOption.textContent : toCurrency
+populateSelects()
 
 
-    function getImg(code){
 
-        if(code==="BTC") return "https://cryptologos.cc/logos/bitcoin-btc-logo.png"
-        if(code==="ETH") return "https://cryptologos.cc/logos/ethereum-eth-logo.png"
-        if(code==="DOGE") return "https://cryptologos.cc/logos/dogecoin-doge-logo.png"
-        if(code==="EUR") return "https://upload.wikimedia.org/wikipedia/commons/b/b7/Flag_of_Europe.svg"
+// INVERTER MOEDAS
 
-        return `https://flagsapi.com/${code.slice(0,2)}/flat/64.png`
-    }
+swapButton.addEventListener("click", () => {
 
-    fromImg.src = getImg(fromCurrency)
-    toImg.src = getImg(toCurrency)
+    const temp = selectFrom.value
+    selectFrom.value = selectTo.value
+    selectTo.value = temp
 
-}
+})
 
-
-// FUNÇÃO CURIOSIDADE
-
-function showRandomFact(currency){
-
-    const factElement = document.getElementById("currency-fact")
-
-    const facts = currencyFacts[currency]
-
-    if(!facts){
-
-        factElement.innerText = "Curiosidade não disponível para esta moeda."
-        return
-
-    }
-
-    const randomIndex = Math.floor(Math.random() * facts.length)
-
-    factElement.innerText = facts[randomIndex]
-
-}
 
 
 // CONVERSÃO
 
-async function convertValues(){
+async function convertValues() {
 
-loading.style.display = "block"
+    loading.style.display = "block"
 
-const from = selectFrom.value
-const to = selectTo.value
-const inputValue = Number(inputCurrency.value)
+    const from = selectFrom.value
+    const to = selectTo.value
 
-if(!inputValue){
+    currencyFromImg.src = getCurrencyImage(from)
+    currencyImg.src = getCurrencyImage(to)
 
-    alert("Digite um valor válido")
-    loading.style.display = "none"
-    return
+    currencyFromName.innerText = currencyNames[from]
+    currencyName.innerText = currencyNames[to]
 
-}
+    const inputValue = Number(inputCurrency.value)
 
-let brlValue = inputValue
+    if (!inputValue) {
 
-
-// CONVERTER PARA BRL
-
-if(from !== "BRL"){
-
-    try{
-
-        const responseFrom = await fetch(`https://economia.awesomeapi.com.br/json/last/${from}-BRL`)
-        const dataFrom = await responseFrom.json()
-
-        const rateFrom = Number(dataFrom[`${from}BRL`]?.bid)
-
-        if(!rateFrom){
-
-            alert(`Cotação de ${from} não disponível`)
-            loading.style.display = "none"
-            return
-
-        }
-
-        brlValue = inputValue * rateFrom
-
-    }
-
-    catch(err){
-
-        alert("Erro ao buscar cotação")
-        console.log(err)
-
+        alert("Digite um valor válido")
         loading.style.display = "none"
         return
 
     }
 
-}
+    try {
+
+        const response = await fetch("https://economia.awesomeapi.com.br/json/all")
+
+        const data = await response.json()
+
+        let rateFrom = 1
+        let rateTo = 1
+
+        if (from !== "BRL") rateFrom = data[from].bid
+        if (to !== "BRL") rateTo = data[to].bid
+
+        const brlValue = inputValue * rateFrom
+        const result = brlValue / rateTo
+
+        currencyValueFrom.innerText = inputValue + " " + from
+        currencyValueTo.innerText = result.toFixed(2) + " " + to
+
+        exchangeRate.innerText = `1 ${from} = ${(rateFrom / rateTo).toFixed(4)} ${to}`
 
 
-// MOSTRAR VALOR DE ORIGEM
 
-currencyValueFrom.innerHTML =
+        // HISTÓRICO
 
-new Intl.NumberFormat("pt-BR",{
+        const li = document.createElement("li")
 
-style:"currency",
-currency:from
+        li.textContent = `${inputValue} ${from} → ${result.toFixed(2)} ${to}`
 
-}).format(inputValue)
+        historyList.prepend(li)
 
+        if (historyList.children.length > 5) {
 
-// CONVERTER DESTINO
+            historyList.removeChild(historyList.lastChild)
 
-try{
-
-let convertedValue
-
-if(to === "BRL"){
-
-convertedValue = new Intl.NumberFormat("pt-BR",{
-
-style:"currency",
-currency:"BRL"
-
-}).format(brlValue)
-
-}
-
-else{
-
-const responseTo = await fetch(`https://economia.awesomeapi.com.br/json/last/${to}-BRL`)
-const dataTo = await responseTo.json()
-
-const rateTo = Number(dataTo[`${to}BRL`]?.bid)
-
-if(!rateTo){
-
-alert(`Cotação de ${to} não disponível`)
-loading.style.display = "none"
-return
-
-}
-
-if(["BTC","ETH","DOGE"].includes(to)){
-
-convertedValue = (brlValue / rateTo).toFixed(6) + " " + to
-
-}
-
-else{
-
-convertedValue = new Intl.NumberFormat("en-US",{
-
-style:"currency",
-currency:to
-
-}).format(brlValue / rateTo)
-
-}
-
-}
-
-currencyValueTo.innerHTML = convertedValue
+        }
 
 
-// HISTÓRICO
 
-const li = document.createElement("li")
+        // CURIOSIDADE
 
-li.textContent = `${inputValue} ${from} → ${convertedValue}`
+        if (currencyFacts[to]) {
 
-historyList.prepend(li)
+            const random = Math.floor(Math.random() * currencyFacts[to].length)
+            currencyFact.innerText = currencyFacts[to][random]
 
-if(historyList.children.length > 5){
+        } else {
 
-historyList.removeChild(historyList.lastChild)
+            currencyFact.innerText = "Nenhuma curiosidade disponível para esta moeda."
+
+        }
+
+
+
+        // GRÁFICO
+
+        loadChart(to)
+
+    }
+
+    catch (error) {
+
+        console.log(error)
+        alert("Erro ao buscar cotação")
+
+    }
+
+    loading.style.display = "none"
 
 }
 
+convertButton.addEventListener("click", convertValues)
+
+
+
+// BUSCAR DADOS GRÁFICO
+
+async function loadChart(currency) {
+
+    if (currency === "BRL") return
+
+    try {
+
+        const response = await fetch(`https://economia.awesomeapi.com.br/json/daily/${currency}-BRL/14`)
+
+        const data = await response.json()
+
+        if (!Array.isArray(data)) return
+
+        const prices = []
+        const labels = []
+
+        data.reverse().forEach(day => {
+
+            prices.push(Number(day.bid))
+
+            const date = new Date(day.timestamp * 1000)
+
+            labels.push(date.toLocaleDateString())
+
+        })
+
+        const rci = calculateRCI(prices, 9)
+
+        createChart(labels, prices, rci)
+
+    }
+
+    catch (err) {
+
+        console.log("Erro gráfico", err)
+
+    }
+
 }
 
-catch(err){
 
-alert("Erro ao buscar cotação. Tente novamente.")
-console.log(err)
+
+// RCI
+
+function calculateRCI(prices, period) {
+
+    const rci = []
+
+    for (let i = 0; i < prices.length; i++) {
+
+        if (i < period) { rci.push(null); continue }
+
+        let window = prices.slice(i - period, i)
+
+        let rank = [...window].sort((a, b) => b - a)
+
+        let sum = 0
+
+        for (let j = 0; j < period; j++) {
+
+            let priceRank = rank.indexOf(window[j]) + 1
+            let timeRank = j + 1
+
+            sum += Math.pow(priceRank - timeRank, 2)
+
+        }
+
+        let value = (1 - (6 * sum) / (period * (period * period - 1))) * 100
+
+        rci.push(value)
+
+    }
+
+    return rci
 
 }
 
-updateCurrencyInfo(from,to)
 
-showRandomFact(to)
 
-loading.style.display = "none"
+// MÉDIA MÓVEL
+
+function calculateMA(prices, period) {
+
+    const ma = []
+
+    for (let i = 0; i < prices.length; i++) {
+
+        if (i < period) { ma.push(null); continue }
+
+        let sum = 0
+
+        for (let j = 0; j < period; j++) {
+
+            sum += prices[i - j]
+
+        }
+
+        ma.push(sum / period)
+
+    }
+
+    return ma
 
 }
 
 
-populateSelects()
 
-convertButton.addEventListener("click",convertValues)
+// SUPORTE E RESISTÊNCIA
+
+function calculateSupportResistance(prices) {
+
+    return {
+
+        support: Math.min(...prices),
+        resistance: Math.max(...prices)
+
+    }
+
+}
+
+
+
+// CRIAR GRÁFICO
+
+function createChart(labels, prices, rci) {
+
+    const ctx = document.getElementById("currencyChart")
+
+    if (chart) chart.destroy()
+
+    const ma = calculateMA(prices, 5)
+    const sr = calculateSupportResistance(prices)
+
+    chart = new Chart(ctx, {
+
+        type: "line",
+
+        data: {
+            labels: labels,
+            datasets: [
+
+                {
+                    label: "Preço",
+                    data: prices,
+                    yAxisID: "y",
+                    borderWidth: 2,
+                    borderColor: "#ffffff",
+                    backgroundColor: "rgba(255,255,255,0.1)"
+                },
+
+                {
+                    label: "Média móvel",
+                    data: ma,
+                    yAxisID: "y",
+                    borderDash: [5, 5],
+                    borderWidth: 2,
+                    borderColor: "#ffd166"
+                },
+
+                {
+                    label: "Suporte",
+                    data: Array(prices.length).fill(sr.support),
+                    yAxisID: "y",
+                    borderWidth: 2,
+                    borderColor: "#ff6b6b"
+                },
+
+                {
+                    label: "Resistência",
+                    data: Array(prices.length).fill(sr.resistance),
+                    yAxisID: "y",
+                    borderWidth: 2,
+                    borderColor: "#4ecdc4"
+                },
+
+                {
+                    label: "RCI",
+                    data: rci,
+                    yAxisID: "rci",
+                    borderWidth: 2,
+                    borderColor: "#4dabf7"
+                }
+
+            ]
+        },
+
+        options:{
+
+responsive:true,
+interaction:{
+    mode:"index",
+    intersect:false
+},
+hover:{
+    mode:"index",
+    intersect:false
+},
+maintainAspectRatio:false,
+plugins:{
+legend:{
+position:"bottom",
+labels:{
+color:"#ffffff"
+}
+}
+},
+
+scales:{
+
+y:{
+position:"left",
+ticks:{
+color:"#ffffff"
+},
+grid:{
+color:"rgba(255,255,255,0.2)"
+}
+},
+
+rci:{
+position:"right",
+min:-100,
+max:100,
+ticks:{
+color:"#ffffff"
+},
+grid:{
+drawOnChartArea:false
+}
+
+},
+
+x:{
+ticks:{
+color:"#ffffff"
+},
+grid:{
+color:"rgba(255,255,255,0.1)"
+}
+}
+
+}
+
+}
+
+    })
+
+}

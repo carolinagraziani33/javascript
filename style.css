@@ -1,196 +1,255 @@
 /* Reset */
-*{
-font-family: "Oswald", sans-serif;
-padding:0;
-margin:0;
-box-sizing:border-box;
-outline:none;
+* {
+    font-family: "Oswald", sans-serif;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    outline: none;
 }
 
-body{
-background-color:#288428;
+body {
+    background-color: #288428;
 }
 
 /* Imagem topo */
 
-.img{
-width:400px;
-display:block;
-margin:0 auto;
-border-radius:8px;
+.img {
+    width: 400px;
+    display: block;
+    margin: 0 auto;
+    border-radius: 8px;
 }
 
 /* Icones moedas */
 
-.img1{
-width:40px;
-margin:15px 0;
+.img1 {
+    width: 40px;
+    margin: 15px 0;
 }
 
 /* CONTAINER PRINCIPAL */
 
 .main-container{
-display:flex;
+display:grid;
+grid-template-columns:300px 375px 300px;
 justify-content:center;
 align-items:flex-start;
 gap:30px;
 margin-top:40px;
 }
 
+
 /* CONVERSOR */
 
-main{
-width:375px;
-border-radius:20px;
-background:#59a959;
-padding:44px 24px 23px;
+main {
+    width: 375px;
+    border-radius: 20px;
+    background: #59a959;
+    padding: 44px 24px 23px;
 }
 
 /* Labels */
 
-label{
-color:#181515;
-font-size:14px;
-display:block;
-margin-bottom:12px;
+label {
+    color: #181515;
+    font-size: 14px;
+    display: block;
+    margin-bottom: 12px;
 }
 
 /* Inputs */
 
 select,
-input{
-background:#f3f9f3;
-border:1px solid #bbbbbb;
-border-radius:4px;
-height:48px;
-width:100%;
-margin-bottom:24px;
-padding-left:18px;
-font-weight:700;
-font-size:16px;
-cursor:pointer;
+input {
+    background: #f3f9f3;
+    border: 1px solid #bbbbbb;
+    border-radius: 4px;
+    height: 48px;
+    width: 100%;
+    margin-bottom: 24px;
+    padding-left: 18px;
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
 }
 
 /* BOTÃO */
 
-button{
-border-radius:5px;
-width:100%;
-background:#288428;
-border:none;
-height:48px;
-color:#f3f9f3;
-font-size:18px;
-font-weight:700;
-cursor:pointer;
-transition:opacity .2s;
+button {
+    border-radius: 5px;
+    width: 100%;
+    background: #288428;
+    border: none;
+    height: 48px;
+    color: #f3f9f3;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: opacity .2s;
 }
 
-button:hover{
-opacity:0.8;
+button:hover {
+    opacity: 0.8;
 }
 
-button:active{
-opacity:0.6;
+button:active {
+    opacity: 0.6;
 }
 
 /* RESULTADO */
 
-section{
-margin-top:36px;
-display:flex;
-flex-direction:column;
-align-items:center;
-gap:10px;
+section {
+    margin-top: 36px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
 }
 
 /* BOX MOEDA */
 
-.currency-box{
-display:flex;
-flex-direction:column;
-align-items:center;
-border:2px solid white;
-width:200px;
-padding:10px 0;
-border-radius:8px;
+.currency-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid white;
+    width: 200px;
+    padding: 10px 0;
+    border-radius: 8px;
 }
 
 /* TEXTO */
 
-.currency{
-color:#181515;
-font-weight:700;
-font-size:20px;
+.currency {
+    color: #181515;
+    font-weight: 700;
+    font-size: 20px;
 }
 
 .currencyvalue,
-.currencyvalue2{
-color:#181515;
-font-size:14px;
+.currencyvalue2 {
+    color: #181515;
+    font-size: 14px;
 }
 
 /* LOADING */
 
-.loading{
-display:none;
-margin-top:15px;
-font-size:16px;
+.loading {
+    display: none;
+    margin-top: 15px;
+    font-size: 16px;
 }
 
 /* HISTÓRICO */
 
-.history-box{
-width:300px;
+.history-box,
+.fact-box{
+width:100%;
 border:2px solid white;
 padding:15px;
 border-radius:10px;
 text-align:center;
-background-color: #1ea11e;
+background-color:#1ea11e;
+box-shadow:0 4px 10px rgba(0,0,0,0.2);
 }
 
-#history-list{
-list-style:none;
-padding:0;
-margin-top:10px;
+#history-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
 }
 
 /* CURIOSIDADE */
 
-.fact-box{
-width:300px;
-border:2px solid white;
-padding:15px;
-border-radius:10px;
-text-align:center;
-background-color: #1ea11e;
+.fact-box {
+    width: 300px;
+    border: 2px solid white;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    background-color: #1ea11e;
 }
 
-#currency-fact{
-margin-top:10px;
-font-size:14px;
+#currency-fact {
+    margin-top: 10px;
+    font-size: 14px;
+}
+#currencyChart{
+width:100%;
+height:240px;
+background:#166816;
+padding:10px;
+border-radius:10px;
+border:2px solid white;
+}
+.chart-container{
+width:100%;
+max-width:800px;
+height:260px;
+margin:auto;
+}
+
+#currencyChart{
+width:100% !important;
+height:300px !important;
 }
 
 /* RESPONSIVO */
 
-@media (max-width:900px){
+@media (max-width:900px) {
 
-.main-container{
-flex-direction:column;
-align-items:center;
+    .main-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .history-box,
+    .fact-box {
+        width: 90%;
+    }
+
 }
 
-.history-box,
-.fact-box{
-width:90%;
-}
-
-}
-body{
+body {
     background-image: url("./Assets/money.webp");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
+
+}
+.left-column{
+display:flex;
+flex-direction:column;
+gap:20px;
+}
+
+#currencyChart{
+width:100%;
+background:#1ea11e;
+padding:10px;
+border-radius:10px;
+border:2px solid white;
+}
+@media (max-width:900px){
+
+.main-container{
+display:flex;
+flex-direction:column;
+align-items:center;
+}
+
+.left-column{
+width:90%;
+}
+
+main{
+width:90%;
+}
+
+.history-box,
+.fact-box{
+width:100%;
+}
 
 }

@@ -2,82 +2,103 @@
 <html lang="pt-br">
 
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Conversor</title>
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<link rel="icon" href="favicon.ico">
 <link rel="stylesheet" href="style.css">
 
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
-rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Roboto:wght@100..900&display=swap" rel="stylesheet">
 
 </head>
 
 <body>
 
-<img class="img" src="./Assets/money.webp" alt="imagem principal">
+<img class="img" src="./Assets/money.webp">
 
 <div class="main-container">
 
-    <!-- HISTORICO -->
-    <div class="history-box">
-        <h3>Últimas conversões</h3>
-        <ul id="history-list"></ul>
-    </div>
+<!-- COLUNA ESQUERDA -->
+<div class="left-column">
+
+<div class="history-box">
+<h3>Últimas conversões</h3>
+<ul id="history-list"></ul>
+</div>
+
+<canvas id="currencyChart"></canvas>
+
+</div>
 
 
-    <!-- CONVERSOR (CENTRO) -->
-    <main>
+<!-- CONVERSOR -->
+<main>
 
-        <!-- Select de origem -->
-        <label>
-            Converter <b>de</b>
-            <select class="select-from"></select>
-        </label>
+<label>
+Converter <b>de</b>
+<select class="select-from"></select>
+<button class="swap">🔄</button>
+</label>
 
-        <!-- Select de destino -->
-        <label>
-            Converter <b>para</b>
-            <select class="select"></select>
-        </label>
+<label>
+Converter <b>para</b>
+<select class="select"></select>
+</label>
 
-        <!-- Valor -->
-        <label>
-            Valor
-            <input class="input-currency" placeholder="R$ 10.000,00">
-        </label>
+<label>
+Valor
+<input class="input-currency" placeholder="R$ 10.000,00">
+</label>
 
-        <button class="button">Converter</button>
+<button class="button">Converter</button>
 
-        <!-- RESULTADO -->
-        <section>
+<p id="exchange-rate"></p>
 
-            <div class="currency-box">
-                <img class="img1" id="currency-from-img" src="./Assets/real.jpg">
-                <p class="currency" id="currency-from-name">Real</p>
-                <p class="currencyvalue">R$0,00</p>
-            </div>
+<section>
 
-            <img class="img1" src="./Assets/seta.webp">
+<div class="currency-box">
 
-            <div class="currency-box">
-                <img id="currency-img" class="img1" src="./Assets/dolar.avif">
-                <p class="currency" id="currency-name">Dolar</p>
-                <p class="currencyvalue2">U$0,00</p>
-            </div>
+<img class="img1" id="currency-from-img">
 
-            <p id="loading" class="loading">Carregando cotação...</p>
+<p class="currency" id="currency-from-name">Real</p>
 
-        </section>
+<p class="currencyvalue">R$0,00</p>
 
-    </main>
+</div>
+
+<img class="img1" src="./Assets/seta.webp">
+
+<div class="currency-box">
+
+<img class="img1" id="currency-img">
+
+<p class="currency" id="currency-name">Dólar</p>
+
+<p class="currencyvalue2">U$0,00</p>
+
+</div>
+
+<p id="loading" class="loading">Carregando cotação...</p>
+
+</section>
+
+</main>
 
 
-    <!-- CURIOSIDADE -->
-    <div class="fact-box">
-        <h3>Curiosidade</h3>
-        <p id="currency-fact"></p>
-    </div>
+<!-- CURIOSIDADE -->
+
+<div class="fact-box">
+
+<h3>Curiosidade</h3>
+
+<p id="currency-fact"></p>
+
+</div>
 
 </div>
 
