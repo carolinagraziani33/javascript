@@ -3,106 +3,117 @@
 
 <head>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Conversor</title>
+    <title>Conversor</title>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<link rel="icon" href="favicon.ico">
-<link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.ico">
+    <link rel="stylesheet" href="style.css">
 
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Roboto:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Roboto:wght@100..900&display=swap"
+        rel="stylesheet">
 
 </head>
 
 <body>
 
-<img class="img" src="./Assets/money.webp">
+    <img class="img" src="./Assets/money.webp">
 
-<div class="main-container">
+    <div class="main-container">
 
-<!-- COLUNA ESQUERDA -->
-<div class="left-column">
+        <!-- COLUNA ESQUERDA -->
+        <div class="left-column">
 
-<div class="history-box">
-<h3>Últimas conversões</h3>
-<ul id="history-list"></ul>
-</div>
+            <div class="history-box">
+                <h3>Últimas conversões</h3>
+                <ul id="history-list"></ul>
+                 <button id="clear-history">Apagar histórico</button>
+            </div>
+            <div class="chart-box">
 
-<canvas id="currencyChart"></canvas>
+                <h3>Gráfico</h3>
 
-</div>
+                <canvas id="currencyChart"></canvas>
 
+                <p id="chart-message"></p>
 
-<!-- CONVERSOR -->
-<main>
+            </div>
+           
 
-<label>
-Converter <b>de</b>
-<select class="select-from"></select>
-<button class="swap">🔄</button>
-</label>
-
-<label>
-Converter <b>para</b>
-<select class="select"></select>
-</label>
-
-<label>
-Valor
-<input class="input-currency" placeholder="R$ 10.000,00">
-</label>
-
-<button class="button">Converter</button>
-
-<p id="exchange-rate"></p>
-
-<section>
-
-<div class="currency-box">
-
-<img class="img1" id="currency-from-img">
-
-<p class="currency" id="currency-from-name">Real</p>
-
-<p class="currencyvalue">R$0,00</p>
-
-</div>
-
-<img class="img1" src="./Assets/seta.webp">
-
-<div class="currency-box">
-
-<img class="img1" id="currency-img">
-
-<p class="currency" id="currency-name">Dólar</p>
-
-<p class="currencyvalue2">U$0,00</p>
-
-</div>
-
-<p id="loading" class="loading">Carregando cotação...</p>
-
-</section>
-
-</main>
+        </div>
 
 
-<!-- CURIOSIDADE -->
+        <!-- CONVERSOR -->
+        <main>
 
-<div class="fact-box">
+            <label>
+                Converter <b>de</b>
+                <select class="select-from"></select>
+                <button class="swap">🔄</button>
+            </label>
 
-<h3>Curiosidade</h3>
+            <label>
+                Converter <b>para</b>
+                <select class="select"></select>
+            </label>
 
-<p id="currency-fact"></p>
+            <label>
+                Valor
+                <input class="input-currency" placeholder="R$ 10.000,00">
+            </label>
 
-</div>
+            <button class="button">Converter</button>
 
-</div>
+            <p id="exchange-rate"></p>
 
-<script src="./java.js"></script>
+            <section>
+
+                <div class="currency-box">
+
+                    <img class="img1" id="currency-from-img">
+
+                    <p class="currency" id="currency-from-name">Real</p>
+
+                    <p class="currencyvalue">R$0,00</p>
+
+                </div>
+
+                <img class="img1" src="./Assets/seta.webp">
+
+                <div class="currency-box">
+
+                    <img class="img1" id="currency-img">
+
+                    <p class="currency" id="currency-name">Dólar</p>
+
+                    <p class="currencyvalue2">U$0,00</p>
+
+                </div>
+
+                <p id="loading" class="loading">Carregando cotação...</p>
+
+            </section>
+
+        </main>
+
+
+        <!-- CURIOSIDADE -->
+
+        <div class="fact-box">
+
+            <h3>Curiosidade</h3>
+
+            <p id="currency-fact"></p>
+
+        </div>
+
+    </div>
+
+    <script src="./java.js"></script>
 
 </body>
+
 </html>
