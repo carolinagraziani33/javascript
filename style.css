@@ -4,6 +4,7 @@
     margin: 0;
     box-sizing: border-box;
     outline: none;
+    cursor: pointer;
 }
 
 h1,

@@ -221,20 +221,22 @@ populateSelects()
 
 
 swapButton.addEventListener("click", () => {
-
+    console.log("Botão de troca clicado")
     const temp = selectFrom.value
     selectFrom.value = selectTo.value
     selectTo.value = temp
+    console.log(`Moedas trocadas: ${selectFrom.value} ↔ ${selectTo.value}`)
 
 })
 
 
 async function convertValues() {
-
+    console.log("Iniciando conversão de moedas")
     loading.style.display = "block"
 
     const from = selectFrom.value
     const to = selectTo.value
+    console.log(`Conversão: ${from} para ${to}`)
 
     currencyFromImg.src = getCurrencyImage(from)
     currencyImg.src = getCurrencyImage(to)
@@ -245,17 +247,19 @@ async function convertValues() {
     const inputValue = Number(inputCurrency.value)
 
     if (!inputValue) {
-
+        console.warn("Valor de entrada inválido")
         alert("Digite um valor válido")
         loading.style.display = "none"
         return
 
     }
+    console.log(`Valor a converter: ${inputValue}`)
 
     try {
-
+        console.log("Buscando dados da API de câmbio...")
         const response = await fetch("https://open.er-api.com/v6/latest/BRL")
         const data = await response.json()
+        console.log("Dados da API recebidos", data)
 
         let rateFrom = 1
         let rateTo = 1
@@ -270,6 +274,7 @@ async function convertValues() {
 
         const brlValue = inputValue / rateFrom
         const result = brlValue * rateTo
+        console.log(`Resultado: ${inputValue} ${from} = ${result.toFixed(2)} ${to}`)
 
         currencyValueFrom.innerText = inputValue + " " + from
         currencyValueTo.innerText = result.toFixed(2) + " " + to
@@ -287,7 +292,7 @@ async function convertValues() {
         }
 
         const currentHistory = Array.from(historyList.children).map(li => li.textContent)
-
+        console.log("Histórico de conversões:", currentHistory)
         localStorage.setItem("conversionHistory", JSON.stringify(currentHistory))
 
 
@@ -329,8 +334,7 @@ async function convertValues() {
         loadChart(to)
 
     } catch (error) {
-
-        console.error(error)
+        console.error("Erro na conversão:", error)
         alert("Erro ao buscar cotação")
 
     }
@@ -381,7 +385,7 @@ const ecoCities = {
 
 
 const savedHistory = JSON.parse(localStorage.getItem("conversionHistory")) || []
-
+console.log("Histórico carregado do localStorage:", savedHistory)
 savedHistory.forEach(text => {
 
     const li = document.createElement("li")
@@ -394,7 +398,7 @@ savedHistory.forEach(text => {
 
 
 clearHistoryButton.addEventListener("click", () => {
-
+    console.log("Histórico limpo")
     historyList.innerHTML = ""
     localStorage.removeItem("conversionHistory")
 
@@ -402,11 +406,11 @@ clearHistoryButton.addEventListener("click", () => {
 
 
 async function loadChart(currency) {
-
+    console.log(`Carregando gráfico para ${currency}`)
     chartMessage.innerText = ""
 
     if (currency === "BRL") {
-
+        console.log("Gráfico não disponível para BRL")
         chartMessage.innerText = "Não há gráfico disponível para o Real."
         return
 
@@ -433,10 +437,11 @@ async function loadChart(currency) {
 
         const rci = calculateRCI(prices, 9)
 
+        console.log(`Gráfico criado com sucesso para ${currency}`)
         createChart(labels, prices, rci)
 
     } catch (err) {
-
+        console.error("Erro ao carregar gráfico:", err)
         chartMessage.innerText = "Não foi possível carregar o gráfico."
 
     }
@@ -510,10 +515,13 @@ function calculateSupportResistance(prices) {
 
 
 function createChart(labels, prices, rci) {
-
+    console.log("Criando novo gráfico")
     const ctx = document.getElementById("currencyChart")
 
-    if (chart) chart.destroy()
+    if (chart) {
+        chart.destroy()
+        console.log("Gráfico anterior destruído")
+    }
 
     const ma = calculateMA(prices, 5)
     const sr = calculateSupportResistance(prices)
@@ -631,7 +639,7 @@ function createChart(labels, prices, rci) {
 
     })
     clearChartButton.addEventListener("click", () => {
-
+        console.log("Botão limpar gráfico clicado")
         if (chart) {
             chart.destroy()
             chart = null
@@ -641,9 +649,8 @@ function createChart(labels, prices, rci) {
 
     })
     copyResultButton.addEventListener("click", () => {
-
         const text = `${currencyValueFrom.innerText} → ${currencyValueTo.innerText}`
-
+        console.log("Resultado copiado:", text)
         navigator.clipboard.writeText(text)
 
         alert("Resultado copiado!")
