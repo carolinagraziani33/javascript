@@ -41,6 +41,7 @@
             display: flex;
             flex-direction: column;
             gap: 20px;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
         }
 
         .city-column h2 {
@@ -50,6 +51,7 @@
 
         .city-card {
             margin-bottom: 20px;
+            overflow: hidden;
         }
 
         .city-card img {
@@ -58,6 +60,11 @@
             object-fit: cover;
             border-radius: 10px;
             margin-bottom: 8px;
+            transition: transform .4s ease;
+        }
+
+        .city-card img:hover {
+            transform: scale(1.08);
         }
 
         .city-card p {
@@ -66,15 +73,22 @@
 
         .back-button {
             display: block;
-            margin: 30px auto;
-            width: 200px;
-            height: 45px;
+            margin: 40px auto;
+            width: 220px;
+            height: 50px;
             background: #288428;
             border: none;
             color: white;
             font-weight: 700;
-            border-radius: 8px;
+            font-size: 16px;
+            border-radius: 10px;
             cursor: pointer;
+            transition: all .3s ease;
+        }
+
+        .back-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
         }
 
         @media(max-width:900px) {

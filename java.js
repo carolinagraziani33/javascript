@@ -48,7 +48,9 @@ const currencyNames = {
     ARS: "Peso Argentino",
     BTC: "Bitcoin",
     ETH: "Ethereum",
-    DOGE: "Dogecoin"
+    DOGE: "Dogecoin",
+    DKK: "Coroa Dinamarquesa",
+    ISK: "Coroa Islandesa"
 }
 
 
@@ -173,7 +175,9 @@ function getCurrencyImage(code) {
         CAD: "ca",
         CHF: "ch",
         CNY: "cn",
-        ARS: "ar"
+        ARS: "ar",
+        DKK: "dk",
+        ISK: "is"
     }
 
     const crypto = {
@@ -250,23 +254,27 @@ async function convertValues() {
 
     try {
 
-        const response = await fetch("https://economia.awesomeapi.com.br/json/all")
-
+        const response = await fetch("https://open.er-api.com/v6/latest/BRL")
         const data = await response.json()
 
         let rateFrom = 1
         let rateTo = 1
 
-        if (from !== "BRL") rateFrom = data[from].bid
-        if (to !== "BRL") rateTo = data[to].bid
+        if (data.rates[from]) {
+            rateFrom = data.rates[from]
+        }
 
-        const brlValue = inputValue * rateFrom
-        const result = brlValue / rateTo
+        if (data.rates[to]) {
+            rateTo = data.rates[to]
+        }
+
+        const brlValue = inputValue / rateFrom
+        const result = brlValue * rateTo
 
         currencyValueFrom.innerText = inputValue + " " + from
         currencyValueTo.innerText = result.toFixed(2) + " " + to
 
-        exchangeRate.innerText = `1 ${from} = ${(rateFrom / rateTo).toFixed(4)} ${to}`
+        exchangeRate.innerText = `1 ${from} = ${(rateTo / rateFrom).toFixed(4)} ${to}`
 
         const li = document.createElement("li")
 
@@ -274,7 +282,9 @@ async function convertValues() {
 
         historyList.prepend(li)
 
-        if (historyList.children.length > 5) historyList.removeChild(historyList.lastChild)
+        if (historyList.children.length > 5) {
+            historyList.removeChild(historyList.lastChild)
+        }
 
         const currentHistory = Array.from(historyList.children).map(li => li.textContent)
 
@@ -292,6 +302,8 @@ async function convertValues() {
             currencyFact.innerText = "Nenhuma curiosidade disponível."
 
         }
+
+
         ecoList.innerHTML = ""
 
         if (ecoCities[to]) {
@@ -299,15 +311,12 @@ async function convertValues() {
             ecoCities[to].forEach(place => {
 
                 const li = document.createElement("li")
-
                 const link = document.createElement("a")
 
                 link.href = place.link
-
                 link.textContent = place.city
 
                 li.appendChild(link)
-
                 ecoList.appendChild(li)
 
             })
@@ -316,48 +325,60 @@ async function convertValues() {
 
         }
 
+
         loadChart(to)
 
     } catch (error) {
 
+        console.error(error)
         alert("Erro ao buscar cotação")
 
     }
 
     loading.style.display = "none"
-    document.getElementById("eco-box").style.display = "block"
+
 }
 
 
 convertButton.addEventListener("click", convertValues)
 const ecoCities = {
 
+
+
     BRL: [
         { city: "Curitiba", link: "curitiba.html" },
         { city: "Prado / Caravelas (Resex Cassurubá)", link: "cassuruba.html" }
     ],
 
-    CAD: {
-        city: "Vancouver",
-        link: "vancouver.html"
-    },
+    USD: [
+        { city: "Portland (Oregon)", link: "portland.html" }
+    ],
 
-    EUR: {
-        city: "Copenhague",
-        link: "copenhague.html"
-    },
+    CAD: [
+        { city: "Vancouver", link: "vancouver.html" }
+    ],
 
-    ISK: {
-        city: "Reykjavik",
-        link: "reykjavik.html"
-    },
+    EUR: [
+        { city: "Amsterdam", link: "amsterdam.html" }
+    ],
 
-    SGD: {
-        city: "Singapura",
-        link: "singapura.html"
-    }
+    DKK: [
+        { city: "Copenhague", link: "copenhague.html" }
+    ],
+
+    ISK: [
+        { city: "Reykjavik", link: "reykjavik.html" }
+    ],
+
+    SGD: [
+        { city: "Singapura", link: "singapura.html" }
+    ]
 
 }
+
+
+
+
 
 const savedHistory = JSON.parse(localStorage.getItem("conversionHistory")) || []
 
