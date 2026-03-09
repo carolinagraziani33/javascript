@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Curitiba Sustentável</title>
+
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .city-header {
+            max-width: 1200px;
+            margin: 40px auto;
+            background: #59a959;
+            padding: 30px;
+            border-radius: 15px;
+            border: 2px solid white;
+            text-align: center;
+        }
+
+        .city-header h1 {
+            margin-bottom: 10px;
+        }
+
+        .city-grid {
+            max-width: 1200px;
+            margin: 30px auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 25px;
+            align-items: stretch;
+        }
+
+        .city-column {
+            background: #1ea11e;
+            padding: 20px;
+            border-radius: 15px;
+            border: 2px solid white;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .city-column h2 {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .city-card {
+            margin-bottom: 20px;
+        }
+
+        .city-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 8px;
+        }
+
+        .city-card p {
+            font-size: 14px;
+        }
+
+        .back-button {
+            display: block;
+            margin: 30px auto;
+            width: 200px;
+            height: 45px;
+            background: #288428;
+            border: none;
+            color: white;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        @media(max-width:900px) {
+
+            .city-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <header class="city-header">
+
+        <h1>Curitiba - Cidade Sustentável</h1>
+
+        <p>
+
+            Curitiba é considerada uma das cidades mais sustentáveis da América Latina.
+            A cidade ficou famosa mundialmente por seu sistema de transporte público
+            inovador, grande quantidade de parques e políticas urbanas voltadas
+            para qualidade de vida e preservação ambiental.
+
+        </p>
+
+    </header>
+
+
+    <section class="city-grid">
+
+        <!-- Passeios -->
+
+        <div class="city-column">
+
+            <h2>Passeios turísticos</h2>
+
+            <div class="city-card">
+
+                <img src="./Assets/curitiba1.jpg">
+                <img src="./Assets/curitiba2.jpg">
+                <p>
+                    Jardim Botânico de Curitiba, um dos cartões-postais mais famosos da cidade.
+                </p>
+
+            </div>
+
+            <div class="city-card">
+
+                <img src="./Assets/curitiba3.jpg">
+
+                <p>
+                    Ópera de Arame, teatro construído com estrutura metálica em meio à natureza.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- Pontos ecológicos -->
+
+        <div class="city-column">
+
+            <h2>Pontos ecológicos</h2>
+
+            <div class="city-card">
+
+                <img src="./Assets/curitiba4.jpg">
+                <img src="./Assets/curitiba5.jpg">
+                <p>
+                    Parque Barigui, grande área verde com lago e trilhas.
+                </p>
+
+            </div>
+
+            <div class="city-card">
+
+                <img src="./Assets/curitiba6.jpg">
+
+                <p>
+                    Bosque Alemão, parque com trilhas ecológicas e vista da cidade.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- Restaurantes -->
+
+        <div class="city-column">
+
+            <h2>Restaurantes</h2>
+
+            <div class="city-card">
+
+                <img src="./Assets/curitiba7.jpg">
+                <img src="./Assets/curitiba8.jpg">
+
+                <p>
+                    Restaurante com foco em culinária orgânica e sustentável.
+                </p>
+
+            </div>
+
+            <div class="city-card">
+
+                <img src="./Assets/curitiba9.jpg">
+
+                <p>
+                    Cozinha local com ingredientes frescos e produtores regionais.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <button class="back-button" onclick="window.location.href='index.html'">
+        Voltar ao conversor
+    </button>
+
+</body>
+
+</html>

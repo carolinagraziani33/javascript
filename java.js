@@ -5,7 +5,7 @@ const selectFrom = document.querySelector(".select-from")
 const selectTo = document.querySelector(".select")
 
 const inputCurrency = document.querySelector(".input-currency")
-
+const ecoList = document.getElementById("eco-list")
 const currencyValueFrom = document.querySelector(".currencyvalue")
 const currencyValueTo = document.querySelector(".currencyvalue2")
 
@@ -25,7 +25,7 @@ const clearChartButton = document.getElementById("clear-chart")
 const copyResultButton = document.getElementById("copy-result")
 const themeButton = document.getElementById("theme-toggle")
 
-if(themeButton){
+if (themeButton) {
     themeButton.addEventListener("click", () => {
         document.body.classList.toggle("dark-mode")
     })
@@ -292,7 +292,29 @@ async function convertValues() {
             currencyFact.innerText = "Nenhuma curiosidade disponível."
 
         }
+        ecoList.innerHTML = ""
 
+        if (ecoCities[to]) {
+
+            ecoCities[to].forEach(place => {
+
+                const li = document.createElement("li")
+
+                const link = document.createElement("a")
+
+                link.href = place.link
+
+                link.textContent = place.city
+
+                li.appendChild(link)
+
+                ecoList.appendChild(li)
+
+            })
+
+            document.getElementById("eco-box").style.display = "block"
+
+        }
 
         loadChart(to)
 
@@ -303,12 +325,39 @@ async function convertValues() {
     }
 
     loading.style.display = "none"
-
+    document.getElementById("eco-box").style.display = "block"
 }
 
 
 convertButton.addEventListener("click", convertValues)
+const ecoCities = {
 
+    BRL: [
+        { city: "Curitiba", link: "curitiba.html" },
+        { city: "Prado / Caravelas (Resex Cassurubá)", link: "cassuruba.html" }
+    ],
+
+    CAD: {
+        city: "Vancouver",
+        link: "vancouver.html"
+    },
+
+    EUR: {
+        city: "Copenhague",
+        link: "copenhague.html"
+    },
+
+    ISK: {
+        city: "Reykjavik",
+        link: "reykjavik.html"
+    },
+
+    SGD: {
+        city: "Singapura",
+        link: "singapura.html"
+    }
+
+}
 
 const savedHistory = JSON.parse(localStorage.getItem("conversionHistory")) || []
 
@@ -560,27 +609,27 @@ function createChart(labels, prices, rci) {
         }
 
     })
-clearChartButton.addEventListener("click", () => {
+    clearChartButton.addEventListener("click", () => {
 
-    if (chart) {
-        chart.destroy()
-        chart = null
-    }
+        if (chart) {
+            chart.destroy()
+            chart = null
+        }
 
-    chartMessage.innerText = "Gráfico limpo."
+        chartMessage.innerText = "Gráfico limpo."
 
-})
-copyResultButton.addEventListener("click", () => {
+    })
+    copyResultButton.addEventListener("click", () => {
 
-    const text = `${currencyValueFrom.innerText} → ${currencyValueTo.innerText}`
+        const text = `${currencyValueFrom.innerText} → ${currencyValueTo.innerText}`
 
-    navigator.clipboard.writeText(text)
+        navigator.clipboard.writeText(text)
 
-    alert("Resultado copiado!")
+        alert("Resultado copiado!")
 
-})
-themeButton.addEventListener("click", () => {
-    document.body.classList.toggle("dark-mode")
-})
+    })
+    themeButton.addEventListener("click", () => {
+        document.body.classList.toggle("dark-mode")
+    })
 
 }

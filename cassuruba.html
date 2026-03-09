@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Open+Sans:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <title>Resex Cassurubá - Prado / Caravelas</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        body {
+            font-family: "Open Sans", sans-serif;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: "Poppins", sans-serif;
+            font-weight: 600;
+        }
+
+        .city-header {
+            max-width: 1200px;
+            margin: 40px auto;
+            background: #59a959;
+            padding: 30px;
+            border-radius: 15px;
+            border: 2px solid white;
+            text-align: center;
+        }
+
+        .city-header h1 {
+            margin-bottom: 10px;
+        }
+
+        .city-grid {
+            max-width: 1200px;
+            margin: 30px auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 25px;
+            align-items: stretch;
+        }
+
+        .city-column {
+            background: #1ea11e;
+            padding: 20px;
+            border-radius: 15px;
+            border: 2px solid white;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .city-column h2 {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .city-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 8px;
+        }
+
+        .city-card p {
+            font-size: 14px;
+        }
+
+        .back-button {
+            display: block;
+            margin: 30px auto;
+            width: 200px;
+            height: 45px;
+            background: #288428;
+            border: none;
+            color: white;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .back-button:hover {
+            opacity: .8;
+        }
+
+        @media(max-width:900px) {
+
+            .city-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <header class="city-header">
+
+        <h1>Reserva Extrativista de Cassurubá</h1>
+
+        <p>
+
+            A Reserva Extrativista de Cassurubá está localizada no litoral sul da Bahia,
+            entre os municípios de Prado, Alcobaça e Caravelas. A região possui uma grande
+            riqueza ambiental formada por manguezais, rios, praias preservadas e áreas
+            de grande biodiversidade marinha.
+
+            A reserva foi criada para proteger o modo de vida das comunidades tradicionais
+            que vivem da pesca artesanal e da coleta sustentável de recursos naturais.
+            Além disso, a região está próxima do Parque Nacional Marinho de Abrolhos,
+            uma das áreas marinhas mais importantes do Brasil.
+
+        </p>
+
+    </header>
+
+
+    <section class="city-grid">
+
+
+        <!-- PASSEIOS -->
+
+        <div class="city-column">
+
+            <h2>Passeios turísticos</h2>
+
+            <div class="city-card">
+                <figure>
+                    <img src="./Assets/cumuruxatiba.jpg">
+                    <figcaption>Praia de Imbassuaba</figcaption>
+                </figure>
+                <p>
+                    Cumuruxatiba é uma vila tranquila conhecida por suas praias preservadas,
+                    falésias e atmosfera rústica. O lugar é famoso pelo turismo sustentável
+                    e pelas águas calmas.
+                </p>
+
+            </div>
+
+
+            <div class="city-card">
+
+                <img src="./Assets/barradocahy.avif">
+
+                <p>
+                    Barra do Cahy é considerada uma das praias mais bonitas do Brasil.
+                    É o ponto onde o rio Cahy encontra o mar e também um local histórico
+                    ligado à chegada dos portugueses ao Brasil.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- PONTOS ECOLOGICOS -->
+
+        <div class="city-column">
+
+            <h2>Pontos ecológicos</h2>
+
+            <div class="city-card">
+
+                <img src="./Assets/manguezal-cassuruba.jpg">
+
+                <p>
+                    Os manguezais da Reserva Extrativista de Cassurubá são fundamentais
+                    para a biodiversidade marinha e servem como berçário natural para
+                    diversas espécies de peixes e crustáceos.
+                </p>
+
+            </div>
+
+
+            <div class="city-card">
+
+                <img src="./Assets/abrolhos.jpg">
+
+                <p>
+                    O Parque Nacional Marinho de Abrolhos abriga um dos maiores bancos
+                    de corais do Atlântico Sul e recebe baleias jubarte durante
+                    a temporada de migração.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- RESTAURANTES -->
+
+        <div class="city-column">
+
+            <h2>Restaurantes</h2>
+
+            <div class="city-card">
+
+                <img src="./Assets/mamaafrica.jpg">
+
+                <p>
+                    Restaurantes locais oferecem pratos tradicionais com frutos do mar
+                    frescos, preparados por comunidades da região.
+                </p>
+
+            </div>
+
+
+            <div class="city-card">
+
+                <img src="./Assets/nossacasa.jpg">
+
+                <p>
+                    A culinária regional inclui moquecas, peixes frescos e receitas
+                    típicas da Bahia preparadas com ingredientes locais.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <button class="back-button" onclick="window.location.href='index.html'">
+        Voltar ao conversor
+    </button>
+
+
+</body>
+
+</html>
