@@ -446,44 +446,44 @@ console.log("📌 PASSO 10: Carregando cidades ecológicas");
 
 const ecoCities = {
     GBP: [
-        { city: "Bristol", link: "bristol.html" }
+        { city: "Bristol", link: "html/bristol.html" }
     ],
     JPY: [
-        { city: "Kyoto", link: "kyoto.html" }
+        { city: "Kyoto", link: "html/kyoto.html" }
     ],
     AUD: [
-        { city: "Melbourne", link: "melbourne.html" }
+        { city: "Melbourne", link: "html/melbourne.html" }
     ],
     CAD: [
-        { city: "Vancouver", link: "vancouver.html" }
+        { city: "Vancouver", link: "html/vancouver.html" }
     ],
     CHF: [
-        { city: "Zurique", link: "zurique.html" }
+        { city: "Zurique", link: "html/zurique.html" }
     ],
     CNY: [
-        { city: "Shenzhen", link: "shenzhen.html" }
+        { city: "Shenzhen", link: "html/shenzhen.html" }
     ],
     ARS: [
-        { city: "Bariloche", link: "bariloche.html" }
+        { city: "Bariloche", link: "html/bariloche.html" }
     ],
     BRL: [
-        { city: "Curitiba", link: "curitiba.html" },
-        { city: "Prado / Caravelas (Resex Cassurubá)", link: "cassuruba.html" }
+        { city: "Curitiba", link: "html/curitiba.html" },
+        { city: "Prado / Caravelas (Resex Cassurubá)", link: "html/cassuruba.html" }
     ],
     USD: [
-        { city: "Portland (Oregon)", link: "portland.html" }
+        { city: "Portland (Oregon)", link: "html/portland.html" }
     ],
     EUR: [
-        { city: "Amsterdam", link: "amsterdam.html" }
+        { city: "Amsterdam", link: "html/amsterdam.html" }
     ],
     DKK: [
-        { city: "Copenhague", link: "copenhague.html" }
+        { city: "Copenhague", link: "html/copenhague.html" }
     ],
     ISK: [
-        { city: "Reykjavik", link: "reykjavik.html" }
+        { city: "Reykjavik", link: "html/reykjavik.html" }
     ],
     SGD: [
-        { city: "Singapura", link: "singapura.html" }
+        { city: "Singapura", link: "html/singapura.html" }
     ]
 };
 
