@@ -3,6 +3,7 @@ const savedTheme = localStorage.getItem("theme")
 if (savedTheme === "dark") {
     document.body.classList.add("dark-mode")
 }
+const cryptoCurrencies = ["BTC", "ETH", "DOGE"]
 const convertButton = document.querySelector(".button")
 const swapButton = document.querySelector(".swap")
 
@@ -346,9 +347,24 @@ async function convertValues() {
         }
 
 
+        const ecoBox = document.getElementById("eco-box")
+
         ecoList.innerHTML = ""
 
-        if (ecoCities[to]) {
+        // SE FOR CRIPTOMOEDA
+        if (cryptoCurrencies.includes(to)) {
+
+            ecoBox.style.display = "none"   // esconde cidades
+
+            chartMessage.innerText = "📊 Gráfico de tendência da criptomoeda."
+
+        }
+
+        // SE FOR MOEDA NORMAL
+        else if (ecoCities[to]) {
+
+            ecoBox.style.display = "block"
+            
 
             ecoCities[to].forEach(place => {
 
@@ -362,8 +378,6 @@ async function convertValues() {
                 ecoList.appendChild(li)
 
             })
-
-            document.getElementById("eco-box").style.display = "block"
 
         }
 
@@ -465,41 +479,63 @@ clearHistoryButton.addEventListener("click", () => {
 
 
 async function loadChart(currency) {
+
     console.log(`Carregando gráfico para ${currency}`)
     chartMessage.innerText = ""
 
+    let pair = `${currency}-BRL`
+    let simpleChart = false
+
     if (currency === "BRL") {
-        console.log("Gráfico não disponível para BRL")
-        chartMessage.innerText = "Não há gráfico disponível para o Real."
-        return
+        pair = "USD-BRL"
+        simpleChart = true
+        chartMessage.innerText =
+            "📊 Comparação simples entre Dólar e Real."
+    }
+
+    if (currency === "ISK") {
+
+        pair = "USD-ISK"
+        simpleChart = true
+
+        chartMessage.innerText =
+            "📊 Comparação simples entre Dólar e Coroa Islandesa."
 
     }
 
     try {
 
-        const response = await fetch(`https://economia.awesomeapi.com.br/json/daily/${currency}-BRL/14`)
-
+        const response = await fetch(`https://economia.awesomeapi.com.br/json/daily/${pair}/14`)
         const data = await response.json()
 
         const prices = []
         const labels = []
+
 
         data.reverse().forEach(day => {
 
             prices.push(Number(day.bid))
 
             const date = new Date(day.timestamp * 1000)
-
             labels.push(date.toLocaleDateString())
 
         })
 
-        const rci = calculateRCI(prices, 9)
+        // tendência para criptomoedas
+        if (cryptoCurrencies.includes(currency)) {
+            calculateCryptoTrend(prices)
+        }
 
-        console.log(`Gráfico criado com sucesso para ${currency}`)
-        createChart(labels, prices, rci)
+        // decidir qual gráfico criar
+        if (simpleChart) {
+            createSimpleChart(labels, prices, pair)
+        } else {
+            const rci = calculateRCI(prices, 9)
+            createChart(labels, prices, rci, pair)
+        }
 
     } catch (err) {
+
         console.error("Erro ao carregar gráfico:", err)
         chartMessage.innerText = "Não foi possível carregar o gráfico."
 
@@ -573,7 +609,7 @@ function calculateSupportResistance(prices) {
 }
 
 
-function createChart(labels, prices, rci) {
+function createChart(labels, prices, rci, pair) {
     console.log("Criando novo gráfico")
     const ctx = document.getElementById("currencyChart")
 
@@ -656,7 +692,17 @@ function createChart(labels, prices, rci) {
                     labels: {
                         color: "#ffffff"
                     }
+                },
+
+                title: {
+                    display: true,
+                    text: `Histórico de cotação - ${pair}`,
+                    color: "#ffffff",
+                    font: {
+                        size: 18
+                    }
                 }
+
             },
 
             scales: {
@@ -700,6 +746,73 @@ function createChart(labels, prices, rci) {
 
 
 }
+function createSimpleChart(labels, prices, pair) {
+
+    const ctx = document.getElementById("currencyChart")
+
+    if (chart) {
+        chart.destroy()
+    }
+
+    chart = new Chart(ctx, {
+
+        type: "line",
+
+        data: {
+            labels: labels,
+            datasets: [
+
+                {
+                    label: pair,
+                    data: prices,
+                    borderWidth: 3,
+                    borderColor: "#4ecdc4",
+                    backgroundColor: "rgba(78,205,196,0.2)",
+                    tension: 0.3
+                }
+
+            ]
+        },
+
+        options: {
+
+            responsive: true,
+            maintainAspectRatio: false,
+
+            plugins: {
+
+                legend: {
+                    labels: { color: "#ffffff" }
+                },
+
+                title: {
+                    display: true,
+                    text: `Comparação de cotação (${pair})`,
+                    color: "#ffffff",
+                    font: { size: 18 }
+                }
+
+            },
+
+            scales: {
+
+                x: {
+                    ticks: { color: "#ffffff" },
+                    grid: { color: "rgba(255,255,255,0.1)" }
+                },
+
+                y: {
+                    ticks: { color: "#ffffff" },
+                    grid: { color: "rgba(255,255,255,0.2)" }
+                }
+
+            }
+
+        }
+
+    })
+
+}
 clearChartButton.addEventListener("click", () => {
     console.log("Botão limpar gráfico clicado")
     if (chart) {
@@ -718,3 +831,31 @@ copyResultButton.addEventListener("click", () => {
     alert("Resultado copiado!")
 
 })
+function calculateCryptoTrend(prices) {
+
+    const trend = document.getElementById("crypto-trend")
+
+    if (!trend) return
+
+    const last = prices[prices.length - 1]
+    const prev = prices[prices.length - 2]
+
+    const change = ((last - prev) / prev * 100).toFixed(2)
+
+    if (last > prev) {
+
+        trend.innerHTML = `📈 Alta (+${change}%)`
+
+    }
+    else if (last < prev) {
+
+        trend.innerHTML = `📉 Baixa (${change}%)`
+
+    }
+    else {
+
+        trend.innerHTML = `➖ Estável`
+
+    }
+
+}
