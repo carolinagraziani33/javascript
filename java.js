@@ -1,3 +1,8 @@
+const savedTheme = localStorage.getItem("theme")
+
+if (savedTheme === "dark") {
+    document.body.classList.add("dark-mode")
+}
 const convertButton = document.querySelector(".button")
 const swapButton = document.querySelector(".swap")
 
@@ -28,6 +33,11 @@ const themeButton = document.getElementById("theme-toggle")
 if (themeButton) {
     themeButton.addEventListener("click", () => {
         document.body.classList.toggle("dark-mode")
+        if (document.body.classList.contains("dark-mode")) {
+            localStorage.setItem("theme", "dark")
+        } else {
+            localStorage.setItem("theme", "light")
+        }
     })
 }
 let chart
@@ -142,6 +152,33 @@ const currencyFacts = {
         "🌍 Mineradoras usam energia renovável em vários países.",
         "🌍 Bitcoin funciona sem banco central.",
         "🌍 A oferta máxima é de 21 milhões de moedas."
+    ],
+    ISK: [
+
+        "🇮🇸 A Islândia utiliza quase 100% de energia renovável, principalmente geotérmica e hidrelétrica.",
+
+        "🇮🇸 Reykjavik é considerada uma das capitais mais sustentáveis do mundo.",
+
+        "🇮🇸 O país possui paisagens naturais únicas com vulcões, geleiras e fontes termais.",
+
+        "🇮🇸 A Islândia protege grande parte de sua natureza através de parques nacionais.",
+
+        "🇮🇸 O país investe fortemente em pesca sustentável para preservar os oceanos."
+
+    ],
+
+    DKK: [
+
+        "🇩🇰 A Dinamarca é líder mundial em energia eólica e produção de energia limpa.",
+
+        "🇩🇰 Copenhague pretende se tornar a primeira capital neutra em carbono do mundo.",
+
+        "🇩🇰 Mais da metade da população de Copenhague utiliza bicicleta diariamente.",
+
+        "🇩🇰 O país possui um dos sistemas de reciclagem mais eficientes da Europa.",
+
+        "🇩🇰 A Dinamarca investe fortemente em arquitetura sustentável e cidades inteligentes."
+
     ],
 
     ETH: [
@@ -347,7 +384,33 @@ async function convertValues() {
 convertButton.addEventListener("click", convertValues)
 const ecoCities = {
 
+    GBP: [
+        { city: "Bristol", link: "bristol.html" }
+    ],
 
+    JPY: [
+        { city: "Kyoto", link: "kyoto.html" }
+    ],
+
+    AUD: [
+        { city: "Melbourne", link: "melbourne.html" }
+    ],
+
+    CAD: [
+        { city: "Vancouver", link: "vancouver.html" }
+    ],
+
+    CHF: [
+        { city: "Zurique", link: "zurique.html" }
+    ],
+
+    CNY: [
+        { city: "Shenzhen", link: "shenzhen.html" }
+    ],
+
+    ARS: [
+        { city: "Bariloche", link: "bariloche.html" }
+    ],
 
     BRL: [
         { city: "Curitiba", link: "curitiba.html" },
@@ -356,10 +419,6 @@ const ecoCities = {
 
     USD: [
         { city: "Portland (Oregon)", link: "portland.html" }
-    ],
-
-    CAD: [
-        { city: "Vancouver", link: "vancouver.html" }
     ],
 
     EUR: [
@@ -638,26 +697,24 @@ function createChart(labels, prices, rci) {
         }
 
     })
-    clearChartButton.addEventListener("click", () => {
-        console.log("Botão limpar gráfico clicado")
-        if (chart) {
-            chart.destroy()
-            chart = null
-        }
 
-        chartMessage.innerText = "Gráfico limpo."
-
-    })
-    copyResultButton.addEventListener("click", () => {
-        const text = `${currencyValueFrom.innerText} → ${currencyValueTo.innerText}`
-        console.log("Resultado copiado:", text)
-        navigator.clipboard.writeText(text)
-
-        alert("Resultado copiado!")
-
-    })
-    themeButton.addEventListener("click", () => {
-        document.body.classList.toggle("dark-mode")
-    })
 
 }
+clearChartButton.addEventListener("click", () => {
+    console.log("Botão limpar gráfico clicado")
+    if (chart) {
+        chart.destroy()
+        chart = null
+    }
+
+    chartMessage.innerText = "Gráfico limpo."
+
+})
+copyResultButton.addEventListener("click", () => {
+    const text = `${currencyValueFrom.innerText} → ${currencyValueTo.innerText}`
+    console.log("Resultado copiado:", text)
+    navigator.clipboard.writeText(text)
+
+    alert("Resultado copiado!")
+
+})

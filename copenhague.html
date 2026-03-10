@@ -3,152 +3,90 @@
 
 <head>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Copenhague - Capital Verde</title>
-
-<link rel="stylesheet" href="style.css">
-
-<style>
-
-.city-header{
-max-width:1200px;
-margin:40px auto;
-background:#59a959;
-padding:30px;
-border-radius:15px;
-border:2px solid white;
-text-align:center;
-}
-
-.city-grid{
-max-width:1200px;
-margin:30px auto;
-display:grid;
-grid-template-columns:1fr 1fr 1fr;
-gap:25px;
-}
-
-.city-column{
-background:#1ea11e;
-padding:20px;
-border-radius:15px;
-border:2px solid white;
-display:flex;
-flex-direction:column;
-gap:20px;
-box-shadow:0 6px 16px rgba(0,0,0,0.25);
-}
-
-.city-card img{
-width:100%;
-height:200px;
-object-fit:cover;
-border-radius:10px;
-}
-
-.city-card p{
-font-size:14px;
-}
-
-.back-button{
-display:block;
-margin:40px auto;
-width:220px;
-height:50px;
-background:#288428;
-border:none;
-color:white;
-font-weight:700;
-border-radius:10px;
-cursor:pointer;
-}
-
-@media(max-width:900px){
-.city-grid{
-grid-template-columns:1fr;
-}
-}
-
-</style>
+    <title>Copenhague - Capital Verde</title>
+    <script src="theme.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="city.css">
 
 </head>
 
 <body>
 
-<header class="city-header">
+    <header class="city-header">
 
-<h1>Copenhague - Capital Verde da Europa</h1>
+        <h1>Copenhague - Capital Verde da Europa</h1>
 
-<p>
+        <p>
 
-Copenhague, capital da Dinamarca, é considerada uma das cidades mais
-sustentáveis do mundo. A cidade investe fortemente em transporte
-sustentável, energia limpa e planejamento urbano ecológico.
+            Copenhague, capital da Dinamarca, é considerada uma das cidades mais
+            sustentáveis do mundo. A cidade investe fortemente em transporte
+            sustentável, energia limpa e planejamento urbano ecológico.
 
-Grande parte da população utiliza bicicletas como principal meio
-de transporte, e o objetivo da cidade é se tornar neutra em carbono.
+            Grande parte da população utiliza bicicletas como principal meio
+            de transporte, e o objetivo da cidade é se tornar neutra em carbono.
 
-</p>
+        </p>
 
-</header>
+    </header>
 
-<section class="city-grid">
+    <section class="city-grid">
 
-<div class="city-column">
+        <div class="city-column">
 
-<h2>Passeios turísticos</h2>
+            <h2>Passeios turísticos</h2>
 
-<div class="city-card">
-<img src="./Assets/copenhagen1.jpg" alt="Nyhavn">
-<p>Nyhavn é um dos pontos turísticos mais famosos da cidade.</p>
-</div>
+            <div class="city-card">
+                <img src="./Assets/copenhagen1.jpg" alt="Nyhavn">
+                <p>Nyhavn é um dos pontos turísticos mais famosos da cidade.</p>
+            </div>
 
-<div class="city-card">
-<img src="./Assets/copenhagen2.jpg" alt="Palácio Amalienborg">
-<p>O Palácio Amalienborg é residência da família real dinamarquesa.</p>
-</div>
+            <div class="city-card">
+                <img src="./Assets/copenhagen2.jpg" alt="Palácio Amalienborg">
+                <p>O Palácio Amalienborg é residência da família real dinamarquesa.</p>
+            </div>
 
-</div>
+        </div>
 
-<div class="city-column">
+        <div class="city-column">
 
-<h2>Pontos ecológicos</h2>
+            <h2>Pontos ecológicos</h2>
 
-<div class="city-card">
-<img src="./Assets/copenhagen3.jpg" alt="Ciclovias de Copenhague">
-<p>Copenhague possui uma das maiores redes de ciclovias do mundo.</p>
-</div>
+            <div class="city-card">
+                <img src="./Assets/copenhagen3.jpg" alt="Ciclovias de Copenhague">
+                <p>Copenhague possui uma das maiores redes de ciclovias do mundo.</p>
+            </div>
 
-<div class="city-card">
-<img src="./Assets/copenhagen4.jpg" alt="Parques urbanos">
-<p>Os parques urbanos fazem parte do planejamento sustentável da cidade.</p>
-</div>
+            <div class="city-card">
+                <img src="./Assets/copenhagen4.jpg" alt="Parques urbanos">
+                <p>Os parques urbanos fazem parte do planejamento sustentável da cidade.</p>
+            </div>
 
-</div>
+        </div>
 
-<div class="city-column">
+        <div class="city-column">
 
-<h2>Restaurantes</h2>
+            <h2>Restaurantes</h2>
 
-<div class="city-card">
-<img src="./Assets/copenhagen5.jpg" alt="Restaurante sustentável">
-<p>Restaurantes focados em ingredientes orgânicos e produção local.</p>
-</div>
+            <div class="city-card">
+                <img src="./Assets/copenhagen5.jpg" alt="Restaurante sustentável">
+                <p>Restaurantes focados em ingredientes orgânicos e produção local.</p>
+            </div>
 
-<div class="city-card">
-<img src="./Assets/copenhagen6.jpg" alt="Culinária nórdica">
-<p>A culinária nórdica valoriza ingredientes naturais e sazonais.</p>
-</div>
+            <div class="city-card">
+                <img src="./Assets/copenhagen6.jpg" alt="Culinária nórdica">
+                <p>A culinária nórdica valoriza ingredientes naturais e sazonais.</p>
+            </div>
 
-</div>
+        </div>
 
-</section>
+    </section>
 
-<button class="back-button" onclick="window.location.href='index.html'">
-Voltar ao conversor
-</button>
+    <button class="back-button" onclick="window.location.href='index.html'">
+        Voltar ao conversor
+    </button>
 
 </body>
 

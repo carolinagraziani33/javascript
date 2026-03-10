@@ -3,190 +3,98 @@
 
 <head>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Portland - Cidade Sustentável</title>
-
-<link rel="stylesheet" href="style.css">
-
-<style>
-
-.city-header{
-max-width:1200px;
-margin:40px auto;
-background:#59a959;
-padding:30px;
-border-radius:15px;
-border:2px solid white;
-text-align:center;
-}
-
-.city-header h1{
-margin-bottom:10px;
-}
-
-.city-grid{
-max-width:1200px;
-margin:30px auto;
-display:grid;
-grid-template-columns:1fr 1fr 1fr;
-gap:25px;
-align-items:stretch;
-}
-
-.city-column{
-background:#1ea11e;
-padding:20px;
-border-radius:15px;
-border:2px solid white;
-display:flex;
-flex-direction:column;
-gap:20px;
-box-shadow:0 6px 16px rgba(0,0,0,0.25);
-}
-
-.city-column h2{
-text-align:center;
-margin-bottom:15px;
-}
-
-.city-card{
-margin-bottom:20px;
-overflow:hidden;
-}
-
-.city-card img{
-width:100%;
-height:200px;
-object-fit:cover;
-border-radius:10px;
-margin-bottom:8px;
-transition:transform .4s ease;
-}
-
-.city-card img:hover{
-transform:scale(1.08);
-}
-
-.city-card p{
-font-size:14px;
-}
-
-.back-button{
-display:block;
-margin:40px auto;
-width:220px;
-height:50px;
-background:#288428;
-border:none;
-color:white;
-font-weight:700;
-font-size:16px;
-border-radius:10px;
-cursor:pointer;
-transition:all .3s ease;
-}
-
-.back-button:hover{
-transform:translateY(-2px);
-box-shadow:0 5px 12px rgba(0,0,0,0.3);
-}
-
-@media(max-width:900px){
-
-.city-grid{
-grid-template-columns:1fr;
-}
-
-}
-
-</style>
+    <title>Portland - Cidade Sustentável</title>
+    <script src="theme.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="city.css">
 
 </head>
 
 <body>
 
-<header class="city-header">
+    <header class="city-header">
 
-<h1>Portland - Cidade Sustentável</h1>
+        <h1>Portland - Cidade Sustentável</h1>
 
-<p>
+        <p>
 
-Portland, localizada no estado do Oregon, é considerada uma das cidades
-mais sustentáveis dos Estados Unidos. A cidade é conhecida por suas
-fortes políticas ambientais, grande quantidade de ciclovias,
-arquitetura verde e amplos parques urbanos.
+            Portland, localizada no estado do Oregon, é considerada uma das cidades
+            mais sustentáveis dos Estados Unidos. A cidade é conhecida por suas
+            fortes políticas ambientais, grande quantidade de ciclovias,
+            arquitetura verde e amplos parques urbanos.
 
-Portland incentiva o uso de transporte sustentável, energia renovável
-e a produção local de alimentos orgânicos, sendo referência mundial
-em planejamento urbano sustentável.
+            Portland incentiva o uso de transporte sustentável, energia renovável
+            e a produção local de alimentos orgânicos, sendo referência mundial
+            em planejamento urbano sustentável.
 
-</p>
+        </p>
 
-</header>
+    </header>
 
-<section class="city-grid">
+    <section class="city-grid">
 
-<!-- PASSEIOS TURÍSTICOS -->
+        <!-- PASSEIOS TURÍSTICOS -->
 
-<div class="city-column">
+        <div class="city-column">
 
-<h2>Passeios turísticos</h2>
+            <h2>Passeios turísticos</h2>
 
-<div class="city-card">
-<img src="./Assets/portland1.jpg" alt="Washington Park">
-<p>Washington Park, uma grande área verde com jardins, trilhas e espaços naturais.</p>
-</div>
+            <div class="city-card">
+                <img src="./Assets/portland1.jpg" alt="Washington Park">
+                <p>Washington Park, uma grande área verde com jardins, trilhas e espaços naturais.</p>
+            </div>
 
-<div class="city-card">
-<img src="./Assets/portland2.jpg" alt="Jardim Japonês de Portland">
-<p>Jardim Japonês de Portland, considerado um dos mais bonitos fora do Japão.</p>
-</div>
+            <div class="city-card">
+                <img src="./Assets/portland2.jpg" alt="Jardim Japonês de Portland">
+                <p>Jardim Japonês de Portland, considerado um dos mais bonitos fora do Japão.</p>
+            </div>
 
-</div>
+        </div>
 
-<!-- ÁREAS ECOLÓGICAS -->
+        <!-- ÁREAS ECOLÓGICAS -->
 
-<div class="city-column">
+        <div class="city-column">
 
-<h2>Pontos ecológicos</h2>
+            <h2>Pontos ecológicos</h2>
 
-<div class="city-card">
-<img src="./Assets/portland3.jpg" alt="Forest Park">
-<p>Forest Park, uma das maiores florestas urbanas dos Estados Unidos.</p>
-</div>
+            <div class="city-card">
+                <img src="./Assets/portland3.jpg" alt="Forest Park">
+                <p>Forest Park, uma das maiores florestas urbanas dos Estados Unidos.</p>
+            </div>
 
-<div class="city-card">
-<img src="./Assets/portland4.jpg" alt="Willamette River Greenway">
-<p>Willamette River Greenway, uma área natural protegida ao longo do rio.</p>
-</div>
+            <div class="city-card">
+                <img src="./Assets/portland4.jpg" alt="Willamette River Greenway">
+                <p>Willamette River Greenway, uma área natural protegida ao longo do rio.</p>
+            </div>
 
-</div>
+        </div>
 
-<!-- RESTAURANTES -->
+        <!-- RESTAURANTES -->
 
-<div class="city-column">
+        <div class="city-column">
 
-<h2>Restaurantes</h2>
+            <h2>Restaurantes</h2>
 
-<div class="city-card">
-<img src="./Assets/portland5.jpg" alt="Restaurante sustentável">
-<p>Restaurantes que utilizam ingredientes orgânicos e produtos locais.</p>
-</div>
+            <div class="city-card">
+                <img src="./Assets/portland5.jpg" alt="Restaurante sustentável">
+                <p>Restaurantes que utilizam ingredientes orgânicos e produtos locais.</p>
+            </div>
 
-<div class="city-card">
-<img src="./Assets/portland6.jpg" alt="Cultura gastronômica de Portland">
-<p>Portland é famosa por sua cultura gastronômica sustentável e alimentos produzidos localmente.</p>
-</div>
+            <div class="city-card">
+                <img src="./Assets/portland6.jpg" alt="Cultura gastronômica de Portland">
+                <p>Portland é famosa por sua cultura gastronômica sustentável e alimentos produzidos localmente.</p>
+            </div>
 
-</div>
+        </div>
 
-</section>
+    </section>
 
-<button class="back-button" onclick="window.location.href='index.html'">
-Voltar ao conversor
-</button>
+    <button class="back-button" onclick="window.location.href='index.html'">
+        Voltar ao conversor
+    </button>
 
 </body>
 

@@ -176,9 +176,13 @@ section {
 
 .dark-mode .history-box,
 .dark-mode .chart-box,
-.dark-mode .fact-box {
-
+.dark-mode .fact-box,
+.dark-mode .eco-box {
     background-color: #145c14;
+}
+
+.dark-mode .eco-list a {
+    color: #ffffff;
 }
 
 .dark-mode label,
