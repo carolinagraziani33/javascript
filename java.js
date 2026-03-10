@@ -3,6 +3,7 @@ const savedTheme = localStorage.getItem("theme")
 if (savedTheme === "dark") {
     document.body.classList.add("dark-mode")
 }
+const ecoTitle = document.getElementById("eco-title")
 const cryptoCurrencies = ["BTC", "ETH", "DOGE"]
 const convertButton = document.querySelector(".button")
 const swapButton = document.querySelector(".swap")
@@ -351,33 +352,47 @@ async function convertValues() {
 
         ecoList.innerHTML = ""
 
-        // SE FOR CRIPTOMOEDA
-        if (cryptoCurrencies.includes(to)) {
+        if (ecoCities[to] || cryptoCurrencies.includes(to)) {
 
-            ecoBox.style.display = "none"   // esconde cidades
+            ecoList.innerHTML = ""
 
-            chartMessage.innerText = "📊 Gráfico de tendência da criptomoeda."
+            const ecoBox = document.getElementById("eco-box")
 
-        }
+            // SE FOR CRIPTOMOEDA
+            if (cryptoCurrencies.includes(to)) {
 
-        // SE FOR MOEDA NORMAL
-        else if (ecoCities[to]) {
+                ecoBox.style.display = "block"
+                ecoTitle.innerText = "📊 Tendência da Criptomoeda"
 
-            ecoBox.style.display = "block"
-            
+                ecoList.innerHTML = `
+<li style="font-weight:bold">📊 Tendência da Criptomoeda</li>
+<li id="crypto-trend">Calculando...</li>
+`
 
-            ecoCities[to].forEach(place => {
+            }
 
-                const li = document.createElement("li")
-                const link = document.createElement("a")
+            // SE FOR MOEDA NORMAL
+            else if (ecoCities[to]) {
+                ecoTitle.innerText = "🌱 Cidade ecológica"
 
-                link.href = place.link
-                link.textContent = place.city
+                ecoCities[to].forEach(place => {
 
-                li.appendChild(link)
-                ecoList.appendChild(li)
+                    const li = document.createElement("li")
+                    const link = document.createElement("a")
 
-            })
+                    link.href = place.link
+                    link.textContent = place.city
+
+                    li.appendChild(link)
+                    ecoList.appendChild(li)
+
+                })
+
+                ecoBox.style.display = "block"
+
+            }
+
+            document.getElementById("eco-box").style.display = "block"
 
         }
 
