@@ -1,3 +1,13 @@
+/* ================================================
+   CONVERSOR DE MOEDAS - ESTILOS CSS
+   ================================================
+   Estrutura: Reset global, body, components, dark mode e responsivo
+*/
+
+/* ================================================
+   1. RESET GLOBAL E ESTILOS BASE
+   ================================================ */
+
 * {
     font-family: "Open Sans", sans-serif;
     padding: 0;
@@ -7,6 +17,7 @@
     cursor: pointer;
 }
 
+/* Estilos para títulos */
 h1,
 h2,
 h3 {
@@ -14,15 +25,22 @@ h3 {
     font-weight: 600;
 }
 
+/* ================================================
+   2. ESTILO DO BODY E FUNDO
+   ================================================ */
+
 body {
     background: #288428;
-    background-image: url("./Assets/money.webp");
+    background-image: url("../Assets/money.webp");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
-
 }
+
+/* ================================================
+   3. COMPONENTES DE IMAGEM
+   ================================================ */
 
 .img {
     width: 400px;
@@ -35,6 +53,10 @@ body {
     width: 40px;
     margin: 15px 0;
 }
+
+/* ================================================
+   4. LAYOUT PRINCIPAL - GRID
+   ================================================ */
 
 .main-container {
     display: grid;
@@ -51,6 +73,10 @@ main {
     background: #59a959;
     padding: 44px 24px 23px;
 }
+
+/* ================================================
+   5. FORMULÁRIO - LABELS E INPUTS
+   ================================================ */
 
 label {
     color: #181515;
@@ -72,6 +98,10 @@ input {
     font-size: 16px;
     cursor: pointer;
 }
+
+/* ================================================
+   6. BOTÕES
+   ================================================ */
 
 button {
     border-radius: 5px;
@@ -98,6 +128,10 @@ button:hover {
 .swap:active {
     transform: rotate(180deg);
 }
+
+/* ================================================
+   7. SEÇÃO DE CONVERSÃO E MOEDAS
+   ================================================ */
 
 section {
     margin-top: 36px;
@@ -129,6 +163,10 @@ section {
     font-size: 14px;
 }
 
+/* ================================================
+   8. LOADING, HISTÓRICO E CAIXAS
+   ================================================ */
+
 .loading {
     display: none;
     margin-top: 15px;
@@ -152,7 +190,6 @@ section {
 }
 
 #currencyChart {
-
     width: 100%;
     height: 240px !important;
     background: #166816;
@@ -161,10 +198,13 @@ section {
     border: 2px solid white;
 }
 
-
 .chart-box {
     overflow: hidden;
 }
+
+/* ================================================
+   9. MODO ESCURO (DARK MODE)
+   ================================================ */
 
 .dark-mode {
     background-color: #0f2b0f;
@@ -191,6 +231,10 @@ section {
 .dark-mode .currencyvalue2 {
     color: #ffffff;
 }
+
+/* ================================================
+   10. COLUNAS - FLEXBOX
+   ================================================ */
 
 .left-column {
     display: flex;
@@ -237,6 +281,10 @@ section {
     gap: 20px;
 }
 
+/* ================================================
+   11. RESPONSIVO - TABLETS (900px e menos)
+   ================================================ */
+
 @media(max-width:900px) {
 
     .main-container {
@@ -256,6 +304,10 @@ section {
     }
 
 }
+
+/* ================================================
+   12. RESPONSIVO - MOBILE (600px e menos)
+   ================================================ */
 
 @media(max-width:600px) {
 
