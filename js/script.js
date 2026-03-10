@@ -347,12 +347,21 @@ async function convertValues() {
         const result = brlValue * rateTo;
         console.log(`✓ RESULTADO: ${inputValue} ${from} = ${result.toFixed(2)} ${to}`);
 
-        // Exibir resultado
+        // Exibir resultado nas caixas grandes
         currencyValueFrom.innerText = inputValue + " " + from;
         currencyValueTo.innerText = result.toFixed(2) + " " + to;
 
-        exchangeRate.innerText = `1 ${from} = ${(rateTo / rateFrom).toFixed(4)} ${to}`;
-        console.log(`💱 Taxa de câmbio: 1 ${from} = ${(rateTo / rateFrom).toFixed(4)} ${to}`);
+        // Mostrar o texto principal abaixo do botão (resultado + taxa)
+        const conversionText = `${inputValue} ${from} = ${result.toFixed(2)} ${to}`;
+        const exchangeRateText = `1 ${from} = ${(rateTo / rateFrom).toFixed(4)} ${to}`;
+
+        console.log(`🔍 Antes de atualizar - elemento existe? ${exchangeRate ? 'SIM' : 'NÃO'}`);
+        exchangeRate.innerText = ""; // limpar antes
+        exchangeRate.innerText = `${conversionText}\n${exchangeRateText}`;
+
+        console.log(`✅ ELEMENTO ATUALIZADO: "${exchangeRate.innerText.replace(/\n/, ' | ')}"`);
+        console.log(`✓ Valores atualizados: ${conversionText}`);
+        console.log(`💱 Taxa atualizada: ${exchangeRateText}`);
 
         // Adicionar ao histórico
         const li = document.createElement("li");
@@ -819,11 +828,25 @@ console.log("✓ Botão limpar gráfico configurado");
 console.log("📌 PASSO 20: Configurando botão copiar resultado");
 
 copyResultButton.addEventListener("click", () => {
-    const text = `${currencyValueFrom.innerText} → ${currencyValueTo.innerText}`;
+    // Ler diretamente do DOM para garantir valores atualizados
+    const valoresFrom = currencyValueFrom.innerText;
+    const valoresTo = currencyValueTo.innerText;
+    const taxaAtual = document.getElementById("exchange-rate").innerText || "";
+    
     console.log("📋 EVENTO: Botão copiar clicado");
-    console.log(`✓ Texto a copiar: "${text}"`);
-    navigator.clipboard.writeText(text);
-    alert("Resultado copiado!");
+    console.log(`📍 Elemento #exchange-rate contém: "${taxaAtual}"`);
+    console.log(`📍 currencyValueFrom contém: "${valoresFrom}"`);
+    console.log(`📍 currencyValueTo contém: "${valoresTo}"`);
+    
+    let textoCopia = `${valoresFrom} → ${valoresTo}`;
+    if (taxaAtual) {
+        textoCopia += `\n${taxaAtual}`;
+    }
+    
+    console.log(`✓ Texto COMPLETO a copiar:\n${textoCopia}`);
+    
+    navigator.clipboard.writeText(textoCopia);
+    alert("Resultado copiado com sucesso!");
 });
 
 console.log("✓ Botão copiar resultado configurado");

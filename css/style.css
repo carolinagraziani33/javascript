@@ -177,6 +177,8 @@ section {
 .fact-box,
 .chart-box {
     width: 100%;
+    max-width: 400px;   /* limitar largura e permitir centralizar */
+    margin: 0 auto 20px;
     border: 2px solid white;
     padding: 15px;
     border-radius: 10px;
@@ -196,6 +198,20 @@ section {
     padding: 10px;
     border-radius: 10px;
     border: 2px solid white;
+}
+
+/* resultado exibido abaixo do botão */
+#exchange-rate {
+    margin: 10px 0 20px;
+    text-align: center;
+    white-space: pre-line;          /* respeita a quebra \n gerada pelo script */
+    font-weight: 600;
+    color: #181515;
+    font-size: 16px;
+}
+
+.dark-mode #exchange-rate {
+    color: #ffffff;
 }
 
 .chart-box {
@@ -240,17 +256,20 @@ section {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    align-items: center;    /* centralizar conteúdo dentro da coluna */
 }
 
 .eco-box {
     width: 100%;
+    max-width: 400px;          /* não ficar esticada em telas largas */
+    margin: 20px auto 0;      /* centraliza horizontalmente */
     border: 2px solid white;
     padding: 15px;
     border-radius: 10px;
     text-align: center;
     background: #1ea11e;
-    margin-top: 20px;
 }
+
 
 .eco-list {
     list-style: none;
@@ -325,13 +344,20 @@ section {
     }
 
     .left-column {
-        padding-left: 20px;
+        width: 100%;
+        padding-left: 0;         /* remover deslocamento lateral */
+        align-items: center;     /* garantir itens centralizados */
     }
 
     .history-box,
     .fact-box,
     .chart-box {
         width: 95%;
+    }
+
+    /* diminuir tamanho de fonte do resultado quando estiver muito estreito */
+    #exchange-rate {
+        font-size: 14px;
     }
 
 }
