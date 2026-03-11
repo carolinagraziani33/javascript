@@ -9,6 +9,21 @@
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Open+Sans:wght@300;400;600&display=swap"
         rel="stylesheet">
     <title>Conversor de Moedas</title>
+    <!-- Google Analytics -->
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4ZRKVPZ4YL"></script>
+
+    <script>
+
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() { dataLayer.push(arguments); }
+
+        gtag('js', new Date());
+
+        gtag('config', 'G-4ZRKVPZ4YL');
+
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
@@ -23,6 +38,54 @@
 <body>
 
     <img class="img" src="Assets/money.webp">
+    <!-- BOTÃO FLUTUANTE -->
+    <button class="btn-anuncio" onclick="abrirFormulario()">
+        📢 Anuncie aqui
+    </button>
+
+
+    <!-- MODAL -->
+    <div class="modal-anuncio" id="modalAnuncio">
+
+        <div class="modal-conteudo">
+
+            <span class="fechar" onclick="fecharFormulario()">×</span>
+
+            <h2>Anuncie no Conversor</h2>
+
+            <form action="https://formcarry.com/s/GEsOLUTBdcj" method="POST" enctype="multipart/form-data">
+
+                <label>Nome</label>
+                <input type="text" name="nome" required>
+
+                <label>Telefone</label>
+                <input type="tel" name="telefone" id="telefone" required>
+
+                <label>Email</label>
+                <input type="email" name="email" required>
+
+                <label>Tipo de anúncio</label>
+
+                <select name="tipo-anuncio" required>
+
+                    <option value="">Selecione</option>
+                    <option value="restaurantes">Restaurantes</option>
+                    <option value="passeios">Passeios turísticos</option>
+                    <option value="hoteis">Hotéis</option>
+                    <option value="lazer">Lazer</option>
+                    <option value="financas">Finanças</option>
+                    <option value="ecológico">Projetos ecológicos</option>
+                    <option value="outros">Outros</option>
+
+                </select>
+
+                <button type="submit">Enviar proposta</button>
+
+            </form>
+
+        </div>
+
+    </div>
 
     <div class="main-container">
 

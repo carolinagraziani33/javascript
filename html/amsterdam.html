@@ -88,6 +88,57 @@
     <button class="back-button" onclick="window.location.href='../index.html'">
         Voltar ao conversor
     </button>
+<!-- BOTÃO ANUNCIE AQUI -->
+<button class="btn-anuncio" onclick="abrirFormulario()">
+📢 Anuncie aqui
+</button>
+
+<!-- MODAL DO FORMULÁRIO -->
+<div class="modal-anuncio" id="modalAnuncio">
+
+<div class="modal-conteudo">
+
+<span class="fechar" onclick="fecharFormulario()">×</span>
+
+<h2>Anuncie nesta página</h2>
+
+<form 
+id="formAnuncio"
+action="https://formcarry.com/s/GEsOLUTBdcj"
+method="POST"
+enctype="multipart/form-data">
+<input type="hidden" name="_redirect" value="http://127.0.0.1:5500/obrigado.html">
+
+<label>Nome</label>
+<input type="text" name="nome" required>
+
+<label>Telefone</label>
+<input type="tel" name="telefone" required>
+
+<label>Email</label>
+<input type="email" name="email" required>
+
+<label>Tipo de anúncio</label>
+
+<select name="tipo-anuncio" required>
+
+<option value="">Selecione</option>
+<option value="restaurantes">Restaurantes</option>
+<option value="passeios">Passeios turísticos</option>
+<option value="hoteis">Hotéis</option>
+<option value="lazer">Lazer</option>
+<option value="financas">Finanças</option>
+<option value="outros">Outros</option>
+
+</select>
+
+<button type="submit">Enviar proposta</button>
+
+</form>
+
+</div>
+
+</div>
 
 </body>
 

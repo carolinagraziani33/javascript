@@ -882,6 +882,54 @@ function calculateCryptoTrend(prices) {
 
 console.log("✓ Função de tendência de criptomoedas definida");
 
+// ===============================
+// FORMULÁRIO DE ANÚNCIO (MODAL)
+// ===============================
+
+// função responsável por abrir o formulário
+function abrirFormulario() {
+
+    console.log("Tentando abrir o formulário de anúncio")
+
+    const modal = document.getElementById("modalAnuncio")
+
+    // verifica se o modal existe no HTML
+    if(modal){
+
+        modal.style.display = "flex"
+
+        console.log("Modal de anúncio aberto com sucesso")
+
+    }else{
+
+        console.log("Erro: modalAnuncio não encontrado no HTML")
+
+    }
+
+}
+
+
+// função responsável por fechar o formulário
+function fecharFormulario(){
+
+    console.log("Tentando fechar o formulário de anúncio")
+
+    const modal = document.getElementById("modalAnuncio")
+
+    // verifica se o modal existe antes de fechar
+    if(modal){
+
+        modal.style.display = "none"
+
+        console.log("Modal de anúncio fechado com sucesso")
+
+    }else{
+
+        console.log("Erro: modalAnuncio não encontrado no HTML")
+
+    }
+
+}
 // ================================================
 // SCRIPT FINALIZADO
 // ================================================
