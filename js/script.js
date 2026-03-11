@@ -883,56 +883,98 @@ function calculateCryptoTrend(prices) {
 console.log("✓ Função de tendência de criptomoedas definida");
 
 // ===============================
-// FORMULÁRIO DE ANÚNCIO (MODAL)
+// ENVIO DO FORMULÁRIO DE ANÚNCIO
 // ===============================
 
-// função responsável por abrir o formulário
-function abrirFormulario() {
+const form = document.getElementById("formAnuncio")
 
-    console.log("Tentando abrir o formulário de anúncio")
+if(form){
 
-    const modal = document.getElementById("modalAnuncio")
+console.log("Formulário encontrado")
 
-    // verifica se o modal existe no HTML
-    if(modal){
+form.addEventListener("submit", async function(event){
 
-        modal.style.display = "flex"
+event.preventDefault()
 
-        console.log("Modal de anúncio aberto com sucesso")
+console.log("Enviando formulário...")
 
-    }else{
+const formData = new FormData(form)
 
-        console.log("Erro: modalAnuncio não encontrado no HTML")
+try{
 
-    }
+const response = await fetch(form.action, {
+
+method: "POST",
+
+headers:{
+"Accept":"application/json"
+},
+
+body: formData
+
+})
+
+if(response.ok){
+
+console.log("Formulário enviado com sucesso")
+
+alert("Obrigado! Seu pedido de anúncio foi enviado.")
+
+form.reset()
+
+// fecha o modal após enviar
+const modal = document.getElementById("modalAnuncio")
+
+if(modal){
+modal.style.display = "none"
+}
+
+}else{
+
+console.log("Erro ao enviar formulário", response.status)
+
+alert("Erro ao enviar formulário.")
+
+}
+
+}catch(error){
+
+console.log("Erro:", error)
+
+}
+
+})
 
 }
 
 
-// função responsável por fechar o formulário
+// ===============================
+// CONTROLE DO MODAL DE ANÚNCIO
+// ===============================
+
+// abrir formulário
+function abrirFormulario(){
+
+console.log("Abrindo formulário de anúncio")
+
+const modal = document.getElementById("modalAnuncio")
+
+if(modal){
+modal.style.display = "flex"
+}
+
+}
+
+
+// fechar formulário
 function fecharFormulario(){
 
-    console.log("Tentando fechar o formulário de anúncio")
+console.log("Fechando formulário")
 
-    const modal = document.getElementById("modalAnuncio")
+const modal = document.getElementById("modalAnuncio")
 
-    // verifica se o modal existe antes de fechar
-    if(modal){
-
-        modal.style.display = "none"
-
-        console.log("Modal de anúncio fechado com sucesso")
-
-    }else{
-
-        console.log("Erro: modalAnuncio não encontrado no HTML")
-
-    }
+if(modal){
+modal.style.display = "none"
+}
 
 }
-// ================================================
-// SCRIPT FINALIZADO
-// ================================================
-console.log("═══════════════════════════════════════════════════════");
-console.log("✅ SCRIPT CARREGADO COM SUCESSO - TODAS AS FUNÇÕES ATIVAS");
-console.log("═══════════════════════════════════════════════════════");
